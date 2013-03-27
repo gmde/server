@@ -1,0 +1,144 @@
+exports.newPlayer = function()
+{
+    return {
+        _id: 0,
+        awards: [],
+        body: [
+            {
+                _id: 0,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 1,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 2,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 3,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 4,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 5,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 6,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 7,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 8,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 9,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 10,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 11,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 12,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 13,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 14,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            },
+            {
+                _id: 15,
+                effect: 0,
+                frazzle: 0,
+                power: 0
+            }
+        ],
+        factors: [],
+        jobbing: {
+            lastTime: new Date()
+        },
+        private: {
+            money: 125,
+            gold: 12,
+            energy: 100,
+            energyMax: 100
+        },
+        public: {
+            place: 0,
+            level: 120
+        },
+        records: []
+    };
+};
+
+var player0 = exports.newPlayer();
+player0.awards.push(0);
+player0.awards.push(1);
+player0.awards.push(2);
+player0.factors.push(1000);
+player0.factors.push(1001);
+player0.factors.push(1002);
+player0.records.push({
+    "_id": 0,
+    "value": 125,
+    "date": new Date(),
+    "isWR": false
+});
+player0.records.push({
+    "_id": 1,
+    "value": 225,
+    "date": new Date(),
+    "isWR": true
+});
+
+exports.players = [
+    player0
+];
