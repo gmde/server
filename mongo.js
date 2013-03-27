@@ -1,29 +1,32 @@
 exports.REMOTE = {
-    host:'linus.mongohq.com',
-    port:10008,
-    database:'muscledb-test'
+    host: 'linus.mongohq.com',
+    port: 10008,
+    database: 'muscledb-test'
 //    username:'jonrayen',
 //    password:'24547294'
 };
 
 exports.LOCAL = {
-    host:'127.0.0.1',
-    port:27017,
-    database:'muscledb-test'
+    host: '127.0.0.1',
+    port: 27017,
+    database: 'muscledb-test'
 //    username:'jonrayen',
 //    password:'24547294'
 };
 
 exports.DEVELOP = {
-    host:'127.0.0.1',
-    port:27017,
-    database:'muscledb-develop',
-    username:'jonrayen',
-    password:'24547294'
+    host: '127.0.0.1',
+    port: 27017,
+    database: 'muscledb-develop',
+    username: 'jonrayen',
+    password: '24547294'
 };
 
-exports.connect = function (options, next)
+var Vow = require('vow').exports;
+
+exports.connect = function(options)
 {
+    var promise = Vow.promise();
     var mongo = require('mongodb');
     var Server = mongo.Server,
         Db = mongo.Db;
@@ -33,83 +36,92 @@ exports.connect = function (options, next)
         new Server(
             options.host,
             options.port,
-            {auto_reconnect:true},
+            {auto_reconnect: true},
             {}
         )
     );
 
-    dbInstance.open(function (err, db)
+    dbInstance.open(function(err, db)
     {
         if (err)
         {
-            next(err);
+            promise.reject(err);
             return;
         }
-
         exports.db = db;
-        console.log('Connection is open');
-
-        exports.auth(options, next);
+        promise.fulfill();
     });
+    return promise;
 };
 
-exports.auth = function(options, next)
+exports.auth = function(options)
 {
+    var promise = Vow.promise();
     exports.db.authenticate(
         options.username,
         options.password,
-        function (err)
+        function(err)
         {
             if (err)
             {
-                next(err);
+                promise.reject(err);
                 return;
             }
-            console.log('Authenticate is successful');
-
-            next(null);
+            promise.fulfill();
         }
     );
+    return promise;
 };
 
-exports.init = function (options, next)
+function initPlayers()
 {
-    if (exports.db != undefined)
-    {
-        next(null);
-        return;
-    }
-    exports.connect(options, function (err)
+    var promise = Vow.promise();
+    exports.db.collection('players', function(err, players)
     {
         if (err)
         {
-            next(err);
+            promise.reject(err);
             return;
         }
 
-        exports.db.collection('players', function (err, players)
-        {
-            if (err)
-            {
-                next(err);
-                return;
-            }
-
-            console.log('Players collection is init');
-            exports.players = players;
-
-            require('./routes/dics').get(function (err, dics)
-            {
-                if (err)
-                {
-                    next(err);
-                    return;
-                }
-
-                console.log('Dictionaries is init');
-                exports.dics = dics;
-                next(null)
-            });
-        });
+        exports.players = players;
+        promise.fulfill();
     });
+    return promise;
+}
+
+function initDics()
+{
+    var promise = Vow.promise();
+    require('./routes/dics').get(function(err, dics)
+    {
+        if (err)
+        {
+            promise.reject(err);
+            return;
+        }
+
+        exports.dics = dics;
+        promise.fulfill();
+    });
+    return promise;
+}
+
+
+exports.init = function(options)
+{
+    var promise = Vow.promise();
+    if (exports.db != undefined)
+    {
+        promise.fulfilled();
+        return promise;
+    }
+    exports.connect(options).then(function()
+    {
+        return exports.auth(options);
+    }).then(function()
+        {
+
+        })
+    return promise;
 };

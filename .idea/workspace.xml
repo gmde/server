@@ -2,236 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d83105f-c520-4436-b1b1-f36349c1f21e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/assets/inspect.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/assets/put-object-rows.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/assets/put-object.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/assets/put-rows-colors.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/assets/put-rows.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/assets/string-object-rows.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/assets/string-rows.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/googledoodle.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/ca.crl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/logs/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/comparison.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/benchmark/LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/benchmark/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/benchmark/benchmark.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/benchmark/doc/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/benchmark/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/benchmark/test/run-test.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/benchmark/test/test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/examples/inspect.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/examples/put-object-rows.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/examples/put-object.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/examples/put-rows-colors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/examples/put-rows.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/examples/string-object-rows.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/examples/string-rows.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/lib/cliff.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/colors/MIT-LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/colors/ReadMe.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/colors/colors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/colors/example.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/colors/example.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/colors/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/colors/test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/eyes/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/eyes/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/eyes/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/eyes/lib/eyes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/eyes/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/eyes/test/eyes-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/docs/transports.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/examples/couchdb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/examples/exception.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/examples/raw-mode.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/examples/webhook-post.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/common.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/config/cli-config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/config/npm-config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/config/syslog-config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/container.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/exception.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/logger.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/transports.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/transports/console.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/transports/file.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/transports/http.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/transports/transport.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/lib/winston/transports/webhook.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/.gitmodules" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/lib/async.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/async/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/cycle/cycle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/cycle/license.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/cycle/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/docs/docco.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/docs/pkginfo.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/examples/all-properties.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/examples/array-argument.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/examples/multiple-properties.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/examples/object-argument.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/examples/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/examples/single-property.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/lib/pkginfo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/pkginfo/test/pkginfo-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/aws.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/aws2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/forever.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/mimetypes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/oauth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/run.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/server.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/squid.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/ca.cnf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/ca.crt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/ca.csr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/ca.key" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/ca.srl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/server.cnf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/server.crt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/server.csr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/server.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/ca/server.key" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/npm-ca.crt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/test.crt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/ssl/test.key" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-body.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-cookie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-cookiejar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-defaults.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-errors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-headers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-httpModule.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-https-strict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-https.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-oauth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-params.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-pipes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-pool.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-proxy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-qs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-redirect.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-s3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-timeout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-toJSON.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-tunnel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/tunnel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/uuid.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/vendor/cookie/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/request/vendor/cookie/jar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/License" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/Readme.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/lib/stack-trace.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/test/common.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/test/integration/test-get.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/test/integration/test-long-stack-trace.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/test/integration/test-parse.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/node_modules/stack-trace/test/run.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/cli-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/container-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/custom-timestamp-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/exception-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/keys/agent2-cert.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/keys/agent2-key.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/scripts/default-exceptions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/scripts/exit-on-error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/scripts/log-exceptions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/fixtures/scripts/unhandle-exceptions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/helpers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/log-exception-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/log-rewriter-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/logger-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/transports/console-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/transports/file-maxfiles-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/transports/file-maxsize-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/transports/file-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/transports/transport.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/transports/webhook-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/node_modules/winston/test/winston-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/cliff/test/cliff-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/.editorconfig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/.jshintrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/apply.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/cancelable.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/debug.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/delay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/parallel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/pipeline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/sequence.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/timed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/timeout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/node_modules/when/when.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/benchmarks/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/lib/vow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.always.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.delay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.done.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.fail.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.fulfill.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.reject.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.spread.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.sync.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.then.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.timeout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/promise.valueof.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/utils/aplus-adapter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/utils/runner.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.always.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.delay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.done.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.fail.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.fulfill.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.invoke.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.isFulfilled.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.isRejected.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.isResolved.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.promise.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.reject.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.spread.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.timeout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/test/vow.when.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/vow/vow.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mongo.js" afterPath="$PROJECT_DIR$/mongo.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -249,19 +21,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="base.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="base.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/routes/base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="7" selection-start="663" selection-end="663" vertical-scroll-proportion="0.6260032">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="16" column="2" selection-start="386" selection-end="386" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -298,9 +61,7 @@
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -323,10 +84,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mongo.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="mongo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mongo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="25" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0">
+            <state line="107" column="1" selection-start="2020" selection-end="2020" vertical-scroll-proportion="0.49561402">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -348,14 +118,15 @@
         <option value="$PROJECT_DIR$/tests/controllers/vow.js" />
         <option value="$PROJECT_DIR$/tests/controllers/player.js" />
         <option value="$PROJECT_DIR$/tests/controllers/test1.js" />
+        <option value="$PROJECT_DIR$/mongo.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1362" />
-    <option name="y" value="-4" />
-    <option name="width" value="1928" />
-    <option name="height" value="1088" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -383,6 +154,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -411,123 +183,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules/nodeunit" />
-    <property name="options.searchVisible" value="true" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager" selected="Nodeunit.controllers">
+  <component name="RunManager" selected="Nodeunit.routes">
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="C:/Program Files/nodejs/node" />
       <envs />
       <setting name="passParentEnvVars" value="true" />
-      <setting name="nodeunitModuleDir" value="" />
+      <setting name="nodeunitModuleDir" value="$PROJECT_DIR$/node_modules/nodeunit" />
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="testType" value="JS_FILE" />
       <setting name="jsFile" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$" coffeescript-run="false">
       <method />
     </configuration>
-    <configuration default="false" name="index.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
+    <configuration default="false" name="index.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="index.js" working-dir="$PROJECT_DIR$" coffeescript-run="false">
       <RunnerSettings RunnerId="NodeJS.run" />
       <ConfigurationWrapper RunnerId="NodeJS.run" />
       <method />
     </configuration>
-    <configuration default="false" name="starter.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="starter.js" working-dir="$PROJECT_DIR$/muscledb">
+    <configuration default="false" name="starter.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="starter.js" working-dir="$PROJECT_DIR$/muscledb" coffeescript-run="false">
       <RunnerSettings RunnerId="NodeJS.run" />
       <ConfigurationWrapper RunnerId="NodeJS.run" />
       <method />
@@ -599,6 +292,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="8d83105f-c520-4436-b1b1-f36349c1f21e" name="Default" comment="" />
       <created>1364373993747</created>
       <updated>1364373993747</updated>
     </task>
@@ -630,23 +324,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1362" y="-4" width="1928" height="1088" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849163" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10520833" sideWeight="0.6708075" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.104902476" sideWeight="0.79217875" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39958593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20807454" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20782124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -708,16 +402,30 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/muscledb/starter.js">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="3" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/muscledb/database.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="23" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/controllers/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="1" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -727,6 +435,16 @@
         <state line="34" column="25" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/muscledb/starter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="3" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/muscledb/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="23" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
@@ -739,9 +457,7 @@
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -782,7 +498,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/routes/base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="7" selection-start="663" selection-end="663" vertical-scroll-proportion="0.6260032">
+        <state line="16" column="2" selection-start="386" selection-end="386" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mongo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="1" selection-start="2020" selection-end="2020" vertical-scroll-proportion="0.49561402">
           <folding />
         </state>
       </provider>
