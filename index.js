@@ -1,5 +1,8 @@
-require('./server').start(function(err)
-{
-    if (err) throw err;
-    else console.log('Listening port 8080...');
-});
+require('./server').start()
+    .then(function ()
+    {
+        console.log('Listening port 8080...');
+    }, function (err)
+    {
+        throw err;
+    });

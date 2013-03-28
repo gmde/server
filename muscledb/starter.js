@@ -1,6 +1,13 @@
-require('./database').init(function(err)
-{
-    if (err) throw err;
+var Muscledb = require('./muscledb');
+var Db = require('../db');
 
-    console.log("Database is created");
-});
+Muscledb.create().then(
+    function ()
+    {
+        console.log("Database is created");
+        Db.db.close();
+    },
+    function (err)
+    {
+        console.log(err);
+    });

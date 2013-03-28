@@ -2,32 +2,37 @@
 //    var logFile = fs.createWriteStream('./myLogFile.log', {flags: 'a'});
 //    app.use(express.logger({stream: logFile}));
 
-exports.start = function(next)
+var Vow = require('vow');
+
+exports.start = function ()
 {
-    var express = require('express');
-    var mongo = require('./mongo');
-    var routes = require('./routes/routes');
+    var Express = require('express');
+    var Db = require('./db');
+    var Routes = require('./routes/routes');
 
-    var app = express();
-    app.configure(function()
+    var app = Express();
+    app.configure(function ()
     {
-        app.use(express.compress());
-        app.use(express.cookieParser());
-        app.use(express.session({ secret: 'iuBviX21'}));
+        app.use(Express.compress());
+        app.use(Express.cookieParser());
+        app.use(Express.session({ secret:'iuBviX21'}));
     });
 
-    mongo.init(mongo.DEVELOP, function(err)
+    var promise = Vow.promise();
+    var errorHandler = function (err)
     {
-        if (err)
+        promise.reject(err);
+    };
+
+    Db.init(Db.DEVELOP)
+        .then(function ()
         {
-            next(err);
-            return;
-        }
+            Routes.init(app);
+            app.listen(8080);
+            promise.fulfill();
+        }, errorHandler);
 
-        routes.init(app);
-        app.listen(8080);
-        next(null);
-    });
+    return promise;
 };
 
 
