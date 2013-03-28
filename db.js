@@ -68,7 +68,7 @@ function initPlayers()
         else
         {
             exports.players = players;
-            promise.fulfill(players);
+            promise.fulfill();
         }
     });
     return promise;
@@ -77,15 +77,16 @@ function initPlayers()
 function initDics()
 {
     var promise = Vow.promise();
-    require('./routes/dics').get(function (err, dics)
-    {
-        if (err) promise.reject(err);
-        else
+    require('./routes/dics').get()
+        .then(function(dics)
         {
             exports.dics = dics;
-            promise.fulfill(dics);
-        }
-    });
+            promise.fulfill();
+        },
+        function(err)
+        {
+            promise.reject(err);
+        });
     return promise;
 }
 
@@ -106,19 +107,23 @@ exports.init = function (options)
         .then(function ()
         {
             return exports.auth(options);
-        }, errorHandler)
+        },
+        errorHandler)
         .then(function ()
         {
             return initPlayers();
-        }, errorHandler)
-        .then(function (players)
+        },
+        errorHandler)
+        .then(function ()
         {
             return initDics();
-        }, errorHandler)
-        .then(function (dics)
+        },
+        errorHandler)
+        .then(function ()
         {
             promise.fulfill();
-        }, errorHandler);
+        },
+        errorHandler);
     return promise;
 };
 

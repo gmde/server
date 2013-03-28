@@ -1,4 +1,4 @@
-var mongo = require('../../mongo');
+var Db = require('../../db');
 var player = require('../../controllers/player');
 
 //var updatePlayer = function()
@@ -28,7 +28,7 @@ var player = require('../../controllers/player');
 
 exports.setUp = function(callback)
 {
-    mongo.init(mongo.DEVELOP, function()
+    Db.init(mongo.DEVELOP).then(function()
     {
         callback();
     });

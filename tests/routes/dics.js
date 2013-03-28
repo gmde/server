@@ -1,22 +1,24 @@
-var mongo = require('../../mongo');
-var dics = require('../../routes/dics');
+var Db = require('../../db');
+var Dics = require('../../routes/dics');
 
 exports.setUp = function(callback)
 {
-    mongo.init(mongo.DEVELOP, function()
-    {
-        callback();
-    });
+    Db.init(Db.DEVELOP).then(callback);
 };
 
 exports.get = function(test)
 {
-    dics.get(function(err, dics)
+    Dics.get()
+        .then(function(dics)
+        {
+            test.equal(dics.awards != undefined, true);
+            test.equal(dics.muscles != undefined, true);
+            test.equal(dics.muscles.length, 16);
+            Db.db.close();
+            test.done();
+        },
+    function(err)
     {
-        test.equal(err == null, true);
-        test.equal(dics.awards != undefined, true);
-        test.equal(dics.muscles != undefined, true);
-        test.equal(dics.muscles.length, 16);
-        test.done();
+        console.log(err);
     });
 };

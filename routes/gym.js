@@ -1,4 +1,4 @@
-var mongo = require('../mongo');
+var Db = require('../db');
 var player = require('../controllers/player');
 var errors = require('./errors');
 

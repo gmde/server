@@ -1,48 +1,76 @@
-var mongo = require('../mongo');
+var Db = require('../db');
+var Vow = require('vow');
 
 exports.exists = function(id, next)
 {
-    mongo.players.findOne({ _id: id }, { _id: 1}, function(err, player)
+    var promise = Vow.promise();
+    Db.players.findOne({ _id: id }, { _id: 1}, function(err, player)
     {
-        next(err, player != undefined && player != null);
+        if (err)promise.reject(err);
+        else promise.fulfill(player != undefined)
     });
+    return promise;
 };
 
-exports.incPrize = function(id, prize, next)
+exports.incPrize = function(id, prize)
 {
-    mongo.players.update(
+    var promise = Vow.promise();
+    Db.players.update(
         { _id: id },
         {
             $inc: {'private.money': prize.money, 'private.gold': prize.gold}
         },
-        next
+        function(err)
+        {
+            if (err) promise.reject(err);
+            else promise.fulfill();
+        }
     );
+    return promise;
 };
 
-exports.decEnergy = function(id, value, next)
+exports.decEnergy = function(id, value)
 {
-    mongo.players.update(
+    var promise = Vow.promise();
+    Db.players.update(
         { _id: id },
         {
             $inc: { 'private.energy': -value }
         },
-        next
+        function(err)
+        {
+            if (err) promise.reject(err);
+            else promise.fulfill();
+        }
     );
+    return promise;
 };
 
-exports.create = function(id, next)
+exports.create = function(id)
 {
+    var promise = Vow.promise();
     var newPlayer = require('../muscledb/collections/players').newPlayer();
     newPlayer._id = id;
-    mongo.players.insert(newPlayer, next);
+    Db.players.insert(newPlayer, function(err)
+    {
+        if (err) promise.reject(err);
+        else promise.fulfill();
+    });
+    return promise;
 };
 
-exports.get = function(id, shown, next)
+exports.get = function(id, shown)
 {
+    var promise = Vow.promise();
     if (typeof shown === 'string')
         shown = [shown];
     var target = {};
     for (var i = 0; i < shown.length; i++)
         target[shown[i]] = 1;
-    mongo.players.findOne({ _id: id }, target, next);
+    Db.players.findOne({ _id: id }, target, function(err)
+    {
+        if (err) promise.reject(err);
+        else promise.fulfill();
+    });
+    return promise;
 };

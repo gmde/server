@@ -1,44 +1,56 @@
 var NAMES = ['awards', 'factors', 'muscles', 'muscles_view', 'exercises', 'gyms'];
-var loaded = 0;
 var dics = {};
 
-var mongo = require('../mongo');
+var Db = require('../db');
+var Caller = require('../caller');
+var Vow = require('vow');
 
-function load(name, next)
+function load(name)
 {
-    mongo.db.collection(name, function(err, collection)
+    Caller.call(function(promise, errorHandler, name)
     {
-        if (err)
-        {
-            next(err);
-            return;
-        }
-        collection.find().toArray(function(err, items)
-        {
-            if (err)
+        Db.collection(name)
+            .then(function(coll)
             {
-                next(err);
-                return;
-            }
-            dics[name] = items;
-            loaded++;
-            if (loaded == NAMES.length) next(null, dics);
-        });
-    });
+                coll.find().toArray(function(err, items)
+                {
+                    if (err)
+                    {
+                        errorHandler(err);
+                        return;
+                    }
+                    dics[name] = items;
+                    promise.fulfill();
+                });
+            },
+            errorHandler);
+    }, name);
 }
 
-exports.get = function(next)
+exports.get = function()
 {
-    if (loaded == NAMES.length)
+    Caller.call(function(promise, errorHandler)
     {
-        next(null, dics);
-        return;
-    }
+        if (dics.init == true)
+        {
+            promise.fulfill(dics);
+            return;
+        }
 
-    for (var i = 0; i < NAMES.length; i++)
-    {
-        load(NAMES[i], next);
-    }
+        var promises = [];
+
+        for (var i = 0; i < NAMES.length; i++)
+        {
+            promises.push(load(NAMES[i]));
+        }
+
+        Vow.all(promises)
+            .then(function()
+            {
+                dics.init = true;
+                promise.fulfill();
+            }, errorHandler);
+    });
 };
 
 
