@@ -1,4 +1,4 @@
-var mongo = require('../../mongo');
+var Db = require('../../db');
 var jobbing = require('../../routes/jobbing');
 var errors = require('../../routes/errors');
 
@@ -7,10 +7,7 @@ var session = { player: { id: PLAYER_ID_TEST } };
 
 exports.setUp = function(callback)
 {
-    mongo.init(mongo.DEVELOP, function()
-    {
-        callback();
-    });
+    Db.init(Db.DEVELOP).then(callback, console.log);
 };
 
 exports.getSuccess = function(test)

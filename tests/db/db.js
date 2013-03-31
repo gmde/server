@@ -8,8 +8,5 @@ exports.develop = function (test)
             Db.db.close();
             test.done();
         },
-        function (err)
-        {
-            console.log(err);
-        });
+        console.log);
 };

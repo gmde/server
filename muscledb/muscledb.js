@@ -1,5 +1,6 @@
 var Db = require('../db');
 var Vow = require('vow');
+var P = require('../p');
 
 var collections = [
     'factors', 'awards', 'exercises', 'gyms', 'muscles', 'muscles_view', 'players'
@@ -7,78 +8,33 @@ var collections = [
 
 exports.create = function()
 {
-    var promise = Vow.promise();
-    var errorHandler = function (err)
+    return P.call(function(fulfill, reject)
     {
-        promise.reject(err);
-    };
-
-    Db.connect(Db.DEVELOP)
-        .then(function ()
-        {
-            return Db.auth(Db.DEVELOP);
-        }, errorHandler)
-        .then(function ()
-        {
-            return Db.dropDatabase();
-        }, errorHandler)
-        .then(function ()
-        {
-            return Db.addUser(Db.DEVELOP.username, Db.DEVELOP.password);
-        }, errorHandler)
-        .then(function ()
-        {
-            return createCollections();
-        }, errorHandler)
-        .then(function ()
-        {
-            promise.fulfill();
-        }, errorHandler);
-    return promise;
+        Db.connect(Db.DEVELOP)
+            .then(Db.auth, reject)
+            .then(Db.dropDatabase, reject)
+            .then(Db.addUser, reject)
+            .then(createCollections, reject)
+            .then(fulfill, reject);
+    });
 };
 
 function createColl(name)
 {
-    var promise = Vow.promise();
-    var errorHandler = function (err)
+    return P.call(function(fulfill, reject)
     {
-        promise.reject(err);
-    };
-
-    Db.collection(name)
-        .then(function(coll)
-        {
-            var values = require('./collections/' + name)[name];
-            coll.insert(values, function (err)
-            {
-                if (err) errorHandler();
-                else promise.fulfill();
-            });
-        }, errorHandler);
-
-    return promise;
+        var values = require('./collections/' + name)[name];
+        Db.insert(name, values).then(fulfill, reject);
+    });
 }
 
 function createCollections()
 {
-    var promise = Vow.promise();
-    var errorHandler = function (err)
+    return P.call(function(fulfill, reject)
     {
-        promise.reject(err);
-    };
-
-    var promises = [];
-
-    for (var i = 0; i < collections.length; i++)
-    {
-        promises.push(createColl(collections[i]));
-    }
-
-    Vow.all(promises)
-        .then(function()
-        {
-            promise.fulfill();
-        }, errorHandler);
-
-    return promise;
+        var promises = [];
+        for (var i = 0; i < collections.length; i++)
+            promises.push(createColl(collections[i]));
+        Vow.all(promises).then(fulfill, reject);
+    });
 }

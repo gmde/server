@@ -1,50 +1,53 @@
-var mongo = require('../../mongo');
-var errors = require('../../routes/errors');
-var player = require('../../controllers/player');
-var gym = require('../../routes/gym');
+var Db = require('../../db');
+var Errors = require('../../routes/errors');
+var Player = require('../../controllers/player');
+var Gym = require('../../routes/gym');
 
 var PLAYER_ID_TEST = 0;
 var session = { player: { id: PLAYER_ID_TEST } };
 
 exports.setUp = function(callback)
 {
-    mongo.init(mongo.DEVELOP, function()
-    {
-        callback();
-    });
+    Db.init(Db.DEVELOP).then(callback, console.log);
 };
 
 exports.getExercisePower = function(test)
 {
-    var exercise = mongo.dics.exercises[2];
+    var exercise = Db.dics.exercises[2];
+    var body = null;
 
-    player.get(session.player.id, 'body', function(err, playerBody)
-    {
-        player.get(session.player.id, 'public', function(err, publicInfo)
+    Player.find(session.player.id, 'body').then(
+        function(player)
         {
-            var totalPower = gym.getExercisePower(playerBody.body, publicInfo.public, exercise);
+            body = player.body;
+            return Player.find(session.player.id, 'public');
+        },
+        console.log
+    ).then(
+        function(player)
+        {
+            var publicInfo = player.public;
+            var totalPower = Gym.getExercisePower(body, publicInfo, exercise);
             test.equal(totalPower, 334);
             test.done();
-        });
-    });
+        },
+        console.log
+    );
 };
 
-exports.execute = function(test)
-{
-    var session = { player: { id: PLAYER_ID_TEST } };
-    var req = { query: {exerciseId: '0', weight: '35', cntPlan: '12'} };
-
-    gym.execute(session, req, function(err, answer)
-    {
-        test.equal(answer.cntFact, 12);
-        test.equal(answer.energy, 5);
-
-        if (err == null)
-            player.decEnergy(PLAYER_ID_TEST, -answer.energy, function()
-            {
-                test.done();
-            });
-        else
-            test.done();
-    });
-};
+//exports.execute = function(test)
+//{
+//    var session = { player: { id: PLAYER_ID_TEST } };
+//    var req = { query: {exerciseId: '0', weight: '35', cntPlan: '12'} };
+//
+//    Gym.execute(session, req).then(
+//        function(answer)
+//        {
+//            test.equal(answer.cntFact, 12);
+//            test.equal(answer.energy, 5);
+//
+//            return Player.decEnergy(PLAYER_ID_TEST, -answer.energy);
+//        },
+//        console.log
+//    ).then(test.done, console.log);
+//};

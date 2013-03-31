@@ -1,76 +1,70 @@
 var Db = require('../db');
-var Vow = require('vow');
-
-exports.exists = function(id, next)
-{
-    var promise = Vow.promise();
-    Db.players.findOne({ _id: id }, { _id: 1}, function(err, player)
-    {
-        if (err)promise.reject(err);
-        else promise.fulfill(player != undefined)
-    });
-    return promise;
-};
+var P = require('../p');
 
 exports.incPrize = function(id, prize)
 {
-    var promise = Vow.promise();
-    Db.players.update(
-        { _id: id },
-        {
-            $inc: {'private.money': prize.money, 'private.gold': prize.gold}
-        },
-        function(err)
-        {
-            if (err) promise.reject(err);
-            else promise.fulfill();
-        }
-    );
-    return promise;
+    return P.call(function(fulfill, reject, handler)
+    {
+        Db.players.update(
+            { _id: id },
+            {
+                $inc: {'private.money': prize.money, 'private.gold': prize.gold}
+            },
+            handler
+        );
+    });
 };
 
 exports.decEnergy = function(id, value)
 {
-    var promise = Vow.promise();
-    Db.players.update(
-        { _id: id },
-        {
-            $inc: { 'private.energy': -value }
-        },
-        function(err)
-        {
-            if (err) promise.reject(err);
-            else promise.fulfill();
-        }
-    );
-    return promise;
+    return P.call(function(fulfill, reject, handler)
+    {
+        Db.players.update(
+            { _id: id },
+            {
+                $inc: { 'private.energy': -value }
+            },
+            handler
+        );
+    });
+};
+
+exports.remove = function(id)
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        Db.players.remove({ _id: id}, handler);
+    });
+};
+
+exports.update = function(id, values)
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        Db.players.update({ _id: id}, values, handler);
+    });
 };
 
 exports.create = function(id)
 {
-    var promise = Vow.promise();
     var newPlayer = require('../muscledb/collections/players').newPlayer();
     newPlayer._id = id;
-    Db.players.insert(newPlayer, function(err)
+    return P.call(function(fulfill, reject, handler)
     {
-        if (err) promise.reject(err);
-        else promise.fulfill();
+        Db.players.insert(newPlayer, handler);
     });
-    return promise;
 };
 
-exports.get = function(id, shown)
+exports.find = function(id, shown)
 {
-    var promise = Vow.promise();
     if (typeof shown === 'string')
         shown = [shown];
     var target = {};
     for (var i = 0; i < shown.length; i++)
         target[shown[i]] = 1;
-    Db.players.findOne({ _id: id }, target, function(err)
+
+    return P.call(function(fulfill, reject, handler)
     {
-        if (err) promise.reject(err);
-        else promise.fulfill();
+        Db.players.findOne({ _id: id }, target, handler);
     });
-    return promise;
 };

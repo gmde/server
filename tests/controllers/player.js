@@ -1,5 +1,5 @@
 var Db = require('../../db');
-var player = require('../../controllers/player');
+var Player = require('../../controllers/player');
 
 //var updatePlayer = function()
 //{
@@ -28,10 +28,7 @@ var player = require('../../controllers/player');
 
 exports.setUp = function(callback)
 {
-    Db.init(mongo.DEVELOP).then(function()
-    {
-        callback();
-    });
+    Db.init(Db.DEVELOP).then(callback, console.log);
 };
 
 var PLAYER_ID_TEST = 0;
@@ -39,88 +36,119 @@ var PLAYER_ID_NOT_EXISTS = 1;
 
 exports.exists = function(test)
 {
-    player.exists(PLAYER_ID_TEST, function(err, answer)
-    {
-        test.equal(answer, true);
-        test.done();
-    });
+    Player.find(PLAYER_ID_TEST, '_id').then(
+        function(player)
+        {
+            test.equal(player != undefined, true);
+            test.done();
+        },
+        console.log
+    );
 };
 
 exports.notExists = function(test)
 {
-    player.exists(PLAYER_ID_NOT_EXISTS, function(err, answer)
-    {
-        test.equal(answer, false);
-        test.done();
-    });
+    Player.find(PLAYER_ID_NOT_EXISTS, '_id').then(
+        function(player)
+        {
+            test.equal(player == undefined, true);
+            test.done();
+        },
+        console.log
+    );
 };
 
-exports.get = function(test)
+exports.find = function(test)
 {
     var field = 'public';
-    player.get(PLAYER_ID_TEST, field, function(err, player)
-    {
-        test.equal(player[field] != undefined, true);
-        test.done();
-    });
+    Player.find(PLAYER_ID_TEST, field).then(
+        function(player)
+        {
+            test.equal(player[field] != undefined, true);
+            test.done();
+        },
+        console.log
+    );
 };
 
 exports.create = function(test)
 {
-    player.get(PLAYER_ID_NOT_EXISTS, 'public', function(err, elem)
-    {
-        test.equal(elem == undefined, true);
-
-        player.create(PLAYER_ID_NOT_EXISTS, function()
+    Player.find(PLAYER_ID_NOT_EXISTS, 'public').then(
+        function(player)
         {
-            player.get(PLAYER_ID_NOT_EXISTS, 'public', function(err, elem)
-            {
-                test.equal(elem == undefined, false);
-
-                mongo.players.remove({ _id: PLAYER_ID_NOT_EXISTS}, function(err)
-                {
-                    test.equal(err == null, true);
-                    test.done();
-                });
-            });
-        });
-    });
+            test.equal(player == undefined, true);
+            return Player.create(PLAYER_ID_NOT_EXISTS);
+        },
+        console.log
+    ).then(
+        function()
+        {
+            return Player.find(PLAYER_ID_NOT_EXISTS, 'public');
+        },
+        console.log
+    ).then(
+        function(player)
+        {
+            test.equal(player != undefined, true);
+            return Player.remove(PLAYER_ID_NOT_EXISTS);
+        },
+        console.log
+    ).then(test.done, console.log);
 };
 
 exports.incPrize = function(test)
 {
     var prize = { money: 5, gold: 3};
+    var player1 = null;
 
-    player.get(PLAYER_ID_TEST, 'private', function(err, player1)
-    {
-        player.incPrize(PLAYER_ID_TEST, prize, function()
+    Player.find(PLAYER_ID_TEST, 'private').then(
+        function(player)
         {
-            player.get(PLAYER_ID_TEST, 'private', function(err, player2)
-            {
-                test.equal(player2.private.money, player1.private.money + prize.money);
-                test.equal(player2.private.gold, player1.private.gold + prize.gold);
-                test.done();
-            });
-        });
-    });
+            player1 = player;
+            return Player.incPrize(PLAYER_ID_TEST, prize);
+        },
+        console.log
+    ).then(
+        function()
+        {
+            return Player.find(PLAYER_ID_TEST, 'private');
+        },
+        console.log
+    ).then(
+        function(player2)
+        {
+            test.equal(player2.private.money, player1.private.money + prize.money);
+            test.equal(player2.private.gold, player1.private.gold + prize.gold);
+            test.done();
+        },
+        console.log
+    );
 };
 
 exports.decEnergy = function(test)
 {
     var value = 5;
+    var player1 = null;
 
-    player.get(PLAYER_ID_TEST, 'private', function(err, player1)
-    {
-        player.decEnergy(PLAYER_ID_TEST, value, function()
+    Player.find(PLAYER_ID_TEST, 'private').then(
+        function(player)
         {
-            player.get(PLAYER_ID_TEST, 'private', function(err, player2)
-            {
-                test.equal(player2.private.energy, player1.private.energy - value);
-                player.decEnergy(PLAYER_ID_TEST, -value, function()
-                {
-                    test.done();
-                });
-            });
-        });
-    });
+            player1 = player;
+            return Player.decEnergy(PLAYER_ID_TEST, value);
+        },
+        console.log
+    ).then(
+        function()
+        {
+            return Player.find(PLAYER_ID_TEST, 'private');
+        },
+        console.log
+    ).then(
+        function(player2)
+        {
+            test.equal(player2.private.energy, player1.private.energy - value);
+            return Player.decEnergy(PLAYER_ID_TEST, -value);
+        },
+        console.log
+    ).then(test.done, console.log);
 };

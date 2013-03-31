@@ -1,161 +1,154 @@
 exports.REMOTE = {
-    host:'linus.mongohq.com',
-    port:10008,
-    database:'muscledb-test'
+    host: 'linus.mongohq.com',
+    port: 10008,
+    database: 'muscledb-test'
 };
 
 exports.LOCAL = {
-    host:'127.0.0.1',
-    port:27017,
-    database:'muscledb-test'
+    host: '127.0.0.1',
+    port: 27017,
+    database: 'muscledb-test'
 };
 
 exports.DEVELOP = {
-    host:'127.0.0.1',
-    port:27017,
-    database:'muscledb-develop',
-    username:'jonrayen',
-    password:'24547294'
+    host: '127.0.0.1',
+    port: 27017,
+    database: 'muscledb-develop',
+    username: 'jonrayen',
+    password: '24547294'
 };
+
+var defaultOptions = null;
 
 var Mongo = require('mongodb');
 var Server = Mongo.Server;
 var Db = Mongo.Db;
+var P = require('./p');
 var Vow = require('vow');
 
-exports.connect = function (options)
+exports.connect = function(options)
 {
     var dbInstance = new Db(
         options.database,
         new Server(
             options.host,
             options.port,
-            {auto_reconnect:true},
+            {auto_reconnect: true},
             {}
         )
     );
 
-    var promise = Vow.promise();
-    dbInstance.open(function (err, db)
+    defaultOptions = options;
+
+    return P.call(function(fulfill, reject)
     {
-        if (err)promise.reject(err);
-        else
+        dbInstance.open(function(err, db)
         {
-            exports.db = db;
-            promise.fulfill();
-        }
+            if (err) reject(err);
+            else
+            {
+                exports.db = db;
+                fulfill(db);
+            }
+        });
     });
-    return promise;
 };
 
-exports.auth = function (options)
+exports.auth = function()
 {
-    var promise = Vow.promise();
-    exports.db.authenticate(options.username, options.password, function (err)
+    return P.call(function(fulfill, reject, handler)
     {
-        if (err) promise.reject(err);
-        else promise.fulfill();
+        exports.db.authenticate(defaultOptions.username, defaultOptions.password, handler);
     });
-    return promise;
 };
 
 function initPlayers()
 {
-    var promise = Vow.promise();
-    exports.db.collection('players', function (err, players)
+    return P.call(function(fulfill, reject, handler)
     {
-        if (err) promise.reject(err);
-        else
-        {
-            exports.players = players;
-            promise.fulfill();
-        }
+        exports.db.collection('players', handler);
     });
-    return promise;
 }
 
 function initDics()
 {
-    var promise = Vow.promise();
-    require('./routes/dics').get()
-        .then(function(dics)
-        {
-            exports.dics = dics;
-            promise.fulfill();
-        },
-        function(err)
-        {
-            promise.reject(err);
-        });
-    return promise;
+    return P.call(function(fulfill, reject)
+    {
+        require('./routes/dics').get().then(fulfill, reject);
+    });
 }
 
-exports.init = function (options)
+exports.init = function(options)
 {
-    var promise = Vow.promise();
-    var errorHandler = function (err)
+    return P.call(function(fulfill, reject)
     {
-        promise.reject(err);
-    };
-
-    if (exports.db != undefined)
-    {
-        promise.fulfilled();
-        return promise;
-    }
-    exports.connect(options)
-        .then(function ()
+        if (exports.db != undefined)
         {
-            return exports.auth(options);
-        },
-        errorHandler)
-        .then(function ()
-        {
-            return initPlayers();
-        },
-        errorHandler)
-        .then(function ()
-        {
-            return initDics();
-        },
-        errorHandler)
-        .then(function ()
-        {
-            promise.fulfill();
-        },
-        errorHandler);
-    return promise;
+            fulfill();
+            return;
+        }
+        exports.connect(options)
+            .then(exports.auth, reject)
+            .then(initPlayers, reject)
+            .then(function(players)
+            {
+                exports.players = players;
+                return initDics();
+            }, reject)
+            .then(function(dics)
+            {
+                exports.dics = dics;
+                fulfill();
+            }, reject);
+    });
 };
 
-exports.collection = function (name)
+exports.collection = function(name)
 {
-    var promise = Vow.promise();
-    exports.db.collection(name, function (err, coll)
+    return P.call(function(fulfill, reject, handler)
     {
-        if (err) promise.reject(err);
-        else promise.fulfill(coll);
+        exports.db.collection(name, handler);
     });
-    return promise;
 };
 
-exports.dropDatabase = function ()
+exports.find = function(collName)
 {
-    var promise = Vow.promise();
-    exports.db.dropDatabase(function (err)
+    return P.call(function(fulfill, reject, handler)
     {
-        if (err) promise.reject(err);
-        else promise.fulfill();
+        exports.collection(collName).then(
+            function(coll)
+            {
+                coll.find().toArray(handler);
+            }, reject
+        );
     });
-    return promise;
 };
 
-exports.addUser = function (username, password)
+exports.insert = function(collName, value)
 {
-    var promise = Vow.promise();
-    exports.db.addUser(username, password, false, function (err)
+    return P.call(function(fulfill, reject, handler)
     {
-        if (err) promise.reject(err);
-        else promise.fulfill();
+        exports.collection(collName).then(
+            function(coll)
+            {
+                coll.insert(value, handler);
+            }, reject
+        );
     });
-    return promise;
+};
+
+exports.dropDatabase = function()
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        exports.db.dropDatabase(handler);
+    });
+};
+
+exports.addUser = function()
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        exports.db.addUser(defaultOptions.username, defaultOptions.password, false, handler);
+    });
 };

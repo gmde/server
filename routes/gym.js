@@ -1,6 +1,7 @@
 var Db = require('../db');
-var player = require('../controllers/player');
-var errors = require('./errors');
+var Player = require('../controllers/player');
+var Errors = require('./errors');
+var P = require('../p');
 
 var WEIGHT_MIN = 20;
 var WEIGHT_MAX = 200;
@@ -22,7 +23,7 @@ exports.getExercisePower = function(playerBody, publicInfo, exercise)
     {
         var muscleExercise = exercise.body[i];
         var muscleBody = playerBody[muscleExercise._id];
-        var muscleInfo = mongo.dics.muscles[muscleExercise._id];
+        var muscleInfo = Db.dics.muscles[muscleExercise._id];
 
         var power = level * muscleInfo.power * muscleExercise.stress / COEFF_POWER;
         power = power + power * muscleBody.power / COEFF_BODYPOWER;
@@ -33,87 +34,84 @@ exports.getExercisePower = function(playerBody, publicInfo, exercise)
 
     totalPower = totalPower * exercise.coeff + exercise.power;
     return totalPower;
-}
+};
 
-exports.execute = function(session, req, next)
+exports.execute = function(session, req)
 {
-    var exerciseId = req.query['exerciseId'];
-    var weight = req.query['weight'];
-    var cntPlan = req.query['cntPlan'];
-    if (exerciseId == undefined || weight == undefined || cntPlan == undefined)
+    return P.call(function(fulfill, reject)
     {
-        next(errors.ERR_PARAMS_UNDEFINED);
-        return;
-    }
-
-    exerciseId = parseInt(exerciseId);
-    weight = parseInt(weight);
-    cntPlan = parseInt(cntPlan);
-
-    var exercise = mongo.dics.exercises[exerciseId];
-    if (exercise == undefined)
-    {
-        next(errors.ERR_GYM_WEIGHT);
-        return;
-    }
-
-    if (WEIGHT_MIN <= weight && weight <= WEIGHT_MAX == false)
-    {
-        next(errors.ERR_GYM_WEIGHT);
-        return;
-    }
-    if (weight % WEIGHT_DELTA != 0)
-    {
-        next(errors.ERR_GYM_WEIGHT);
-        return;
-    }
-    if (COUNT_MIN <= cntPlan && cntPlan <= COUNT_MAX == false)
-    {
-        next(errors.ERR_GYM_COUNT);
-        return;
-    }
-
-    player.get(session.player.id, ['body', 'public', 'private'], function(err, elem)
-    {
-        if (err)
+        var exerciseId = req.query['exerciseId'];
+        var weight = req.query['weight'];
+        var cntPlan = req.query['cntPlan'];
+        if (exerciseId == undefined || weight == undefined || cntPlan == undefined)
         {
-            next(err);
+            fulfill(Errors.ERR_PARAMS_UNDEFINED);
             return;
         }
 
-        var mass = elem.public.level * 1.33 + 40;
-        var power = exports.getExercisePower(elem.body, elem.public, exercise);
+        exerciseId = parseInt(exerciseId);
+        weight = parseInt(weight);
+        cntPlan = parseInt(cntPlan);
 
-        if (power < weight)
+        var exercise = Db.dics.exercises[exerciseId];
+        if (exercise == undefined)
         {
-            next(errors.ERR_CNT_ZERO);
+            fulfill(Errors.ERR_GYM_WEIGHT);
             return;
         }
 
-        var k1 = 1 - weight/power;
-        var cntMax = Math.floor(k1/0.03 + k1*k1*35 + 1);
-        var k2 = weight*cntMax - weight*cntMax*(k1 + 0.25) + weight;
-        var effMax = k2/(mass*15);
-
-        var cntFact = cntPlan < cntMax ? cntPlan : cntMax;
-        var effFact = (cntFact/cntPlan)*effMax;
-
-        var energyFact = Math.round((cntFact/cntPlan)*exercise.energy);
-        if (energyFact > elem.private.energy)
+        if (WEIGHT_MIN <= weight && weight <= WEIGHT_MAX == false)
         {
-            next(errors.ERR_GYM_ENERGY);
+            fulfill(Errors.ERR_GYM_WEIGHT);
+            return;
+        }
+        if (weight % WEIGHT_DELTA != 0)
+        {
+            fulfill(Errors.ERR_GYM_WEIGHT);
+            return;
+        }
+        if (COUNT_MIN <= cntPlan && cntPlan <= COUNT_MAX == false)
+        {
+            fulfill(Errors.ERR_GYM_COUNT);
             return;
         }
 
-        player.decEnergy(session.player.id, energyFact, function(err)
-        {
-            if (err)
+        Player.find(session.player.id, ['body', 'public', 'private']).then(
+            function(player)
             {
-                next(err);
-                return;
-            }
+                var mass = player.public.level * 1.33 + 40;
+                var power = exports.getExercisePower(player.body, player.public, exercise);
 
-            next(null, { cntMax: cntMax, cntFact: cntFact, energy: energyFact });
-        });
+                if (power < weight)
+                {
+                    fulfill(Errors.ERR_CNT_ZERO);
+                    return;
+                }
+
+                var k1 = 1 - weight / power;
+                var cntMax = Math.floor(k1 / 0.03 + k1 * k1 * 35 + 1);
+                var k2 = weight * cntMax - weight * cntMax * (k1 + 0.25) + weight;
+                var effMax = k2 / (mass * 15);
+
+                var cntFact = cntPlan < cntMax ? cntPlan : cntMax;
+                var effFact = (cntFact / cntPlan) * effMax;
+
+                var energyFact = Math.round((cntFact / cntPlan) * exercise.energy);
+                if (energyFact > player.private.energy)
+                {
+                    fulfill(Errors.ERR_GYM_ENERGY);
+                    return;
+                }
+
+                Player.decEnergy(session.player.id, energyFact).then(
+                    function()
+                    {
+                        fulfill({ cntMax: cntMax, cntFact: cntFact, energy: energyFact });
+                    },
+                    reject
+                );
+            },
+            reject
+        );
     });
 };

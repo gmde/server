@@ -1,60 +1,48 @@
-var errors = require('./errors');
-var player = require('../controllers/player');
+var Errors = require('./errors');
+var Player = require('../controllers/player');
+var P = require('../p');
 
-function auth(session, id, authKey, next)
+exports.auth = function(session, id, authKey)
 {
-    //TODO: Check MD5
-    if (authKey != '123')
+    return P.call(function(fulfill, reject)
     {
-        next(errors.ERR_AUTH_FAIL);
-        return;
-    }
-
-    var initSession = function()
-    {
-        session.player = {
-            id: id,
-            jobbing: { started: false, lastTime: null }
-        };
-        session.auth = true;
-        next(null, "muscle body server: " + id);
-    };
-
-    player.exists(id, function(err, exists)
-    {
-        if (err)
+        if (session.player != undefined)
         {
-            next(err);
+            if (session.player.id == id)
+            {
+                fulfill("muscle body server: " + id);
+                return;
+            }
+        }
+
+        //TODO: Check MD5
+        if (authKey != '123')
+        {
+            fulfill(Errors.ERR_AUTH_FAIL);
             return;
         }
 
-        if (exists == false)
+        var initSession = function()
         {
-            player.create(id, function(err)
-            {
-                if (err)
-                {
-                    next(err);
-                    return;
-                }
+            session.player = {
+                id: id,
+                jobbing: { started: false, lastTime: null }
+            };
+            session.auth = true;
+            fulfill("muscle body server: " + id);
+        };
 
-                initSession();
-            });
-        }
-        else
-            initSession();
+        Player.find(id, '_id').then(
+            function(player)
+            {
+                if (player == undefined)
+                {
+                    Player.create(id).then(initSession, reject);
+                }
+                else
+                    initSession();
+            },
+            reject
+        );
     });
 }
-
-exports.auth = function(session, id, authKey, next)
-{
-    if (session.player != undefined)
-    {
-        if (session.player.id != id)
-            auth(session, id, authKey, next);
-        else
-            next(null, "muscle body server: " + id);
-    }
-    else
-        auth(session, id, authKey, next);
-};
