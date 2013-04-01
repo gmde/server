@@ -1,6 +1,6 @@
 var Db = require('../db');
 var Base = require('./base');
-var Player = require('./base');
+var Player = require('../controllers/player');
 var Dics = require('./dics');
 var Gym = require('./gym');
 var Jobbing = require('./jobbing');
@@ -108,7 +108,7 @@ exports.init = function (app)
     {
         try
         {
-            handler(res, req);
+            handler(req, res);
         }
         catch (e)
         {

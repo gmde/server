@@ -37,9 +37,9 @@ var PLAYER_ID_NOT_EXISTS = 1;
 exports.exists = function(test)
 {
     Player.find(PLAYER_ID_TEST, '_id').then(
-        function(player)
+        function(_id)
         {
-            test.equal(player != undefined, true);
+            test.equal(_id != undefined, true);
             test.done();
         },
         console.log
@@ -49,9 +49,9 @@ exports.exists = function(test)
 exports.notExists = function(test)
 {
     Player.find(PLAYER_ID_NOT_EXISTS, '_id').then(
-        function(player)
+        function(_id)
         {
-            test.equal(player == undefined, true);
+            test.equal(_id == undefined, true);
             test.done();
         },
         console.log
@@ -62,9 +62,9 @@ exports.find = function(test)
 {
     var field = 'public';
     Player.find(PLAYER_ID_TEST, field).then(
-        function(player)
+        function(data)
         {
-            test.equal(player[field] != undefined, true);
+            test.equal(data != undefined, true);
             test.done();
         },
         console.log
@@ -74,9 +74,9 @@ exports.find = function(test)
 exports.create = function(test)
 {
     Player.find(PLAYER_ID_NOT_EXISTS, 'public').then(
-        function(player)
+        function(pubilcInfo)
         {
-            test.equal(player == undefined, true);
+            test.equal(pubilcInfo == undefined, true);
             return Player.create(PLAYER_ID_NOT_EXISTS);
         },
         console.log
@@ -87,9 +87,9 @@ exports.create = function(test)
         },
         console.log
     ).then(
-        function(player)
+        function(pubilcInfo)
         {
-            test.equal(player != undefined, true);
+            test.equal(pubilcInfo != undefined, true);
             return Player.remove(PLAYER_ID_NOT_EXISTS);
         },
         console.log
@@ -99,12 +99,12 @@ exports.create = function(test)
 exports.incPrize = function(test)
 {
     var prize = { money: 5, gold: 3};
-    var player1 = null;
+    var privateInfo1 = null;
 
     Player.find(PLAYER_ID_TEST, 'private').then(
-        function(player)
+        function(privateInfo)
         {
-            player1 = player;
+            privateInfo1 = privateInfo;
             return Player.incPrize(PLAYER_ID_TEST, prize);
         },
         console.log
@@ -115,10 +115,10 @@ exports.incPrize = function(test)
         },
         console.log
     ).then(
-        function(player2)
+        function(privateInfo2)
         {
-            test.equal(player2.private.money, player1.private.money + prize.money);
-            test.equal(player2.private.gold, player1.private.gold + prize.gold);
+            test.equal(privateInfo2.money, privateInfo1.money + prize.money);
+            test.equal(privateInfo2.gold, privateInfo1.gold + prize.gold);
             test.done();
         },
         console.log
@@ -128,12 +128,12 @@ exports.incPrize = function(test)
 exports.decEnergy = function(test)
 {
     var value = 5;
-    var player1 = null;
+    var privateInfo1 = null;
 
     Player.find(PLAYER_ID_TEST, 'private').then(
-        function(player)
+        function(privateInfo)
         {
-            player1 = player;
+            privateInfo1 = privateInfo;
             return Player.decEnergy(PLAYER_ID_TEST, value);
         },
         console.log
@@ -144,9 +144,9 @@ exports.decEnergy = function(test)
         },
         console.log
     ).then(
-        function(player2)
+        function(privateInfo2)
         {
-            test.equal(player2.private.energy, player1.private.energy - value);
+            test.equal(privateInfo2.energy, privateInfo1.energy - value);
             return Player.decEnergy(PLAYER_ID_TEST, -value);
         },
         console.log

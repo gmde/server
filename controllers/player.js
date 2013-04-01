@@ -57,6 +57,7 @@ exports.create = function(id)
 
 exports.find = function(id, shown)
 {
+    //todo: save shown
     if (typeof shown === 'string')
         shown = [shown];
     var target = {};
@@ -65,6 +66,15 @@ exports.find = function(id, shown)
 
     return P.call(function(fulfill, reject, handler)
     {
-        Db.players.findOne({ _id: id }, target, handler);
+        Db.players.findOne({ _id: id }, target, function(err, data)
+        {
+            if (err)reject(err);
+            else
+            {
+                if (typeof shown === 'string')
+                    fulfill(data[shown]);
+                else fulfill(data);
+            }
+        });
     });
 };

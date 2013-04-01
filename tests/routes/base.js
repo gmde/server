@@ -42,9 +42,9 @@ exports.authCreate = function(test)
         },
         console.log
     ).then(
-        function(player)
+        function(_id)
         {
-            test.equal(player != undefined, true);
+            test.equal(_id != undefined, true);
             return Player.remove(PLAYER_ID_CREATED);
         },
         console.log

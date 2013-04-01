@@ -28,10 +28,10 @@ exports.get = function(session)
     return P.call(function(fulfill, reject)
     {
         Player.find(playerId, 'jobbing').then(
-            function(player)
+            function(jobbing)
             {
                 var result = {};
-                var lastTime = player.jobbing.lastTime;
+                var lastTime = jobbing.lastTime;
                 var now = new Date();
                 if (lastTime.setMinutes(lastTime.getMinutes() + JOBBING_PERIOD) > now)
                 {

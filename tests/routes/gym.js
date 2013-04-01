@@ -17,16 +17,15 @@ exports.getExercisePower = function(test)
     var body = null;
 
     Player.find(session.player.id, 'body').then(
-        function(player)
+        function(data)
         {
-            body = player.body;
+            var body = data;
             return Player.find(session.player.id, 'public');
         },
         console.log
     ).then(
-        function(player)
+        function(publicInfo)
         {
-            var publicInfo = player.public;
             var totalPower = Gym.getExercisePower(body, publicInfo, exercise);
             test.equal(totalPower, 334);
             test.done();
