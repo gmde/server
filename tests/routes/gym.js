@@ -35,19 +35,16 @@ exports.getExercisePower = function(test)
     );
 };
 
-//exports.execute = function(test)
-//{
-//    var session = { player: { id: PLAYER_ID_TEST } };
-//    var req = { query: {exerciseId: '0', weight: '35', cntPlan: '12'} };
-//
-//    Gym.execute(session, req).then(
-//        function(answer)
-//        {
-//            test.equal(answer.cntFact, 12);
-//            test.equal(answer.energy, 5);
-//
-//            return Player.decEnergy(PLAYER_ID_TEST, -answer.energy);
-//        },
-//        console.log
-//    ).then(test.done, console.log);
-//};
+exports.execute = function(test)
+{
+    Gym.execute(PLAYER_ID_TEST, 0, 35, 12).then(
+        function(answer)
+        {
+            test.equal(answer.cntFact, 12);
+            test.equal(answer.energy, 5);
+
+            return Player.decEnergy(PLAYER_ID_TEST, -answer.energy);
+        },
+        console.log
+    ).then(test.done, console.log);
+};

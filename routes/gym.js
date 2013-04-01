@@ -36,23 +36,10 @@ exports.getExercisePower = function(playerBody, publicInfo, exercise)
     return totalPower;
 };
 
-exports.execute = function(session, req)
+exports.execute = function(playerId, exerciseId, weight, cntPlan)
 {
     return P.call(function(fulfill, reject)
     {
-        var exerciseId = req.query['exerciseId'];
-        var weight = req.query['weight'];
-        var cntPlan = req.query['cntPlan'];
-        if (exerciseId == undefined || weight == undefined || cntPlan == undefined)
-        {
-            fulfill(Errors.ERR_PARAMS_UNDEFINED);
-            return;
-        }
-
-        exerciseId = parseInt(exerciseId);
-        weight = parseInt(weight);
-        cntPlan = parseInt(cntPlan);
-
         var exercise = Db.dics.exercises[exerciseId];
         if (exercise == undefined)
         {
@@ -76,7 +63,7 @@ exports.execute = function(session, req)
             return;
         }
 
-        Player.find(session.player.id, ['body', 'public', 'private']).then(
+        Player.find(playerId, ['body', 'public', 'private']).then(
             function(player)
             {
                 var mass = player.public.level * 1.33 + 40;
@@ -103,7 +90,7 @@ exports.execute = function(session, req)
                     return;
                 }
 
-                Player.decEnergy(session.player.id, energyFact).then(
+                Player.decEnergy(playerId, energyFact).then(
                     function()
                     {
                         fulfill({ cntMax: cntMax, cntFact: cntFact, energy: energyFact });

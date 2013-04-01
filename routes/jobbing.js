@@ -69,6 +69,12 @@ exports.complete = function(session)
         if (lastTime < new Date())
             fulfill(Errors.ERR_JOBBING_TIMEISUP);
         else
-            Player.incPrize(session.player.id, PRIZE).then(fulfill, reject);
+            Player.incPrize(session.player.id, PRIZE).then(
+                function()
+                {
+                    fulfill(PRIZE);
+                },
+                reject
+            );
     });
 };

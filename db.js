@@ -1,21 +1,21 @@
 exports.REMOTE = {
-    host: 'linus.mongohq.com',
-    port: 10008,
-    database: 'muscledb-test'
+    host:'linus.mongohq.com',
+    port:10008,
+    database:'muscledb-test'
 };
 
 exports.LOCAL = {
-    host: '127.0.0.1',
-    port: 27017,
-    database: 'muscledb-test'
+    host:'127.0.0.1',
+    port:27017,
+    database:'muscledb-test'
 };
 
 exports.DEVELOP = {
-    host: '127.0.0.1',
-    port: 27017,
-    database: 'muscledb-develop',
-    username: 'jonrayen',
-    password: '24547294'
+    host:'127.0.0.1',
+    port:27017,
+    database:'muscledb-develop',
+    username:'jonrayen',
+    password:'24547294'
 };
 
 var defaultOptions = null;
@@ -26,23 +26,23 @@ var Db = Mongo.Db;
 var P = require('./p');
 var Vow = require('vow');
 
-exports.connect = function(options)
+exports.connect = function (options)
 {
     var dbInstance = new Db(
         options.database,
         new Server(
             options.host,
             options.port,
-            {auto_reconnect: true},
+            {auto_reconnect:true},
             {}
         )
     );
 
     defaultOptions = options;
 
-    return P.call(function(fulfill, reject)
+    return P.call(function (fulfill, reject)
     {
-        dbInstance.open(function(err, db)
+        dbInstance.open(function (err, db)
         {
             if (err) reject(err);
             else
@@ -54,9 +54,9 @@ exports.connect = function(options)
     });
 };
 
-exports.auth = function()
+exports.auth = function ()
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         exports.db.authenticate(defaultOptions.username, defaultOptions.password, handler);
     });
@@ -64,7 +64,7 @@ exports.auth = function()
 
 function initPlayers()
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         exports.db.collection('players', handler);
     });
@@ -72,15 +72,15 @@ function initPlayers()
 
 function initDics()
 {
-    return P.call(function(fulfill, reject)
+    return P.call(function (fulfill, reject)
     {
         require('./routes/dics').get().then(fulfill, reject);
     });
 }
 
-exports.init = function(options)
+exports.init = function (options)
 {
-    return P.call(function(fulfill, reject)
+    return P.call(function (fulfill, reject)
     {
         if (exports.db != undefined)
         {
@@ -90,12 +90,12 @@ exports.init = function(options)
         exports.connect(options)
             .then(exports.auth, reject)
             .then(initPlayers, reject)
-            .then(function(players)
+            .then(function (players)
             {
                 exports.players = players;
                 return initDics();
             }, reject)
-            .then(function(dics)
+            .then(function (dics)
             {
                 exports.dics = dics;
                 fulfill();
@@ -103,20 +103,20 @@ exports.init = function(options)
     });
 };
 
-exports.collection = function(name)
+exports.collection = function (name)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         exports.db.collection(name, handler);
     });
 };
 
-exports.find = function(collName)
+exports.find = function (collName)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         exports.collection(collName).then(
-            function(coll)
+            function (coll)
             {
                 coll.find().toArray(handler);
             }, reject
@@ -124,12 +124,12 @@ exports.find = function(collName)
     });
 };
 
-exports.insert = function(collName, value)
+exports.insert = function (collName, value)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         exports.collection(collName).then(
-            function(coll)
+            function (coll)
             {
                 coll.insert(value, handler);
             }, reject
@@ -137,17 +137,17 @@ exports.insert = function(collName, value)
     });
 };
 
-exports.dropDatabase = function()
+exports.dropDatabase = function ()
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         exports.db.dropDatabase(handler);
     });
 };
 
-exports.addUser = function()
+exports.addUser = function ()
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         exports.db.addUser(defaultOptions.username, defaultOptions.password, false, handler);
     });

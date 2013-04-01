@@ -1,5 +1,6 @@
 var Db = require('../db');
 var Base = require('./base');
+var Player = require('./base');
 var Dics = require('./dics');
 var Gym = require('./gym');
 var Jobbing = require('./jobbing');
@@ -7,31 +8,29 @@ var Errors = require('./errors');
 
 function handler(req, res)
 {
-    var send = function(err, answer)
+    var successHandler = function (answer)
     {
-        if (err != null)
-        {
-            if (err.error != undefined)
-                setTimeout(function()
-                {
-                    res.jsonp(err);
-                }, 50);
-            else
-                setTimeout(function()
-                {
-                    res.jsonp({ error: -1, text: err});
-                }, 50);
-        }
-        else
-            setTimeout(function()
-            {
-                res.jsonp(answer);
-            }, 50);
+        res.jsonp(answer);
+    };
+
+    var errorHandler = function (err)
+    {
+        console.log("Error: " + err);
+        res.jsonp({ error:-1, text:"Произошла ошибка :("});
+    };
+
+    var param = function (name, type)
+    {
+        if (type == undefined)type = 'string';
+        var value = req.query[name];
+        if (value == undefined) throw 'Argument is undefined: ' + name;
+        if (type == 'int')value = parseInt(value);
+        return value;
     };
 
     if (req.url == '/favicon.ico')
     {
-        send({ favicon: 1});
+        successHandler({ favicon:1});
         return;
     }
 
@@ -40,77 +39,81 @@ function handler(req, res)
 
     if (command == '/')
     {
-        var playerId = parseInt(req.query['playerId']);
-        var authKey = req.query['authKey'];
-        Base.auth(session, playerId, authKey, send);
+        var playerId = param('playerId', 'int');
+        var authKey = param('authKey');
+        Base.auth(session, playerId, authKey).then(successHandler, errorHandler);
         return;
     }
 
     if (session.auth == undefined || session.auth == false)
     {
-        send(Errors.ERR_ISNOT_AUTH);
+        successHandler(Errors.ERR_ISNOT_AUTH);
         return;
     }
 
-    var method = req.query['method'];
-    if (method == undefined)
-    {
-        send(Errors.ERR_METHOD_UNDEFINED);
-        return;
-    }
+    var id = session.player.id;
+    var method = param['method'];
 
     switch (command)
     {
         case '/dics':
-            Dics.get(send);
-            break;
-
-        case '/awards':
-            Db.players.findOne({ '_id': session.player.id }, { 'awards': 1 }, send);
-            break;
-
-        case '/body':
-            Db.players.findOne({ '_id': session.player.id }, { 'body': 1 }, send);
-            break;
-
-        case '/factors':
-            Db.players.findOne({ '_id': session.player.id }, { 'factors': 1 }, send);
-            break;
-
-        case '/jobbing':
-            if (Jobbing[method] == undefined) send(Errors.ERR_METHOD);
-            else Jobbing[method](session, send);
+            Dics.get().then(successHandler, errorHandler);
             break;
 
         case '/private':
-            mongo.players.findOne({ '_id': session.player.id }, { 'private': 1 }, send);
+            Player.find(id, 'private').then(successHandler, errorHandler);
             break;
 
         case '/public':
-            mongo.players.findOne({ '_id': session.player.id }, { 'public': 1 }, send);
+            Player.find(id, 'public').then(successHandler, errorHandler);
+            break;
+
+        case '/awards':
+            Player.find(id, 'awards').then(successHandler, errorHandler);
+            break;
+
+        case '/body':
+            Player.find(id, 'body').then(successHandler, errorHandler);
+            break;
+
+        case '/factors':
+            Player.find(id, 'factors').then(successHandler, errorHandler);
+            break;
+
+        case '/jobbing':
+            if (method == 'get')Jobbing.get(session).then(successHandler, errorHandler);
+            else if (method == 'complete')Jobbing.complete(session).then(successHandler, errorHandler);
+            else successHandler(Errors.ERR_METHOD);
             break;
 
         case '/gym':
-            if (gym[method] == undefined) send(errors.ERR_METHOD);
-            else gym[method](session, send);
+            if (method == 'execute')
+            {
+                var exerciseId = param('exerciseId');
+                var weight = param('weight');
+                var cntPlan = param('cntPlan');
+                Gym.execute(id, exerciseId, weight, cntPlan).then(successHandler, errorHandler);
+            }
+            else successHandler(Errors.ERR_METHOD);
             break;
 
         default:
-            send(errors.ERR_ROUTE);
+            successHandler(Errors.ERR_ROUTE);
     }
 }
 
-exports.init = function(app)
+exports.init = function (app)
 {
-    app.get('*', function(req, res)
+    app.get('*', function (req, res)
     {
         try
         {
             handler(res, req);
         }
-        catch(e)
+        catch (e)
         {
-            console.log(e);
+            console.log("Error: " + e);
+            res.jsonp({ error:-1, text:"Произошла ошибка :("});
         }
     });
 };

@@ -7,10 +7,10 @@ var Vow = require('vow');
 
 function load(name)
 {
-    return P.call(function(fulfill, reject)
+    return P.call(function (fulfill, reject)
     {
         Db.find(name).then(
-            function(items)
+            function (items)
             {
                 dics[name] = items;
                 fulfill(items);
@@ -20,9 +20,9 @@ function load(name)
     });
 }
 
-exports.get = function()
+exports.get = function ()
 {
-    return P.call(function(fulfill, reject)
+    return P.call(function (fulfill, reject)
     {
         if (dics[NAMES[0]] != undefined)
         {
@@ -34,7 +34,10 @@ exports.get = function()
         for (var i = 0; i < NAMES.length; i++)
             promises.push(load(NAMES[i]));
 
-        Vow.all(promises).then(fulfill, reject);
+        Vow.all(promises).then(function ()
+        {
+            fulfill(dics);
+        }, reject);
     });
 };
 
