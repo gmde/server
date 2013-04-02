@@ -1,6 +1,8 @@
-var Errors = require('./errors');
 var Player = require('../controllers/player');
 var P = require('../p');
+
+exports.ERR_AUTH_FAIL = "Authorization fail";
+exports.MES_SUCCESS = "Success";
 
 exports.auth = function(session, id, authKey)
 {
@@ -10,7 +12,7 @@ exports.auth = function(session, id, authKey)
         {
             if (session.player.id == id)
             {
-                fulfill("muscle body server: " + id);
+                fulfill(exports.MES_SUCCESS + id);
                 return;
             }
         }
@@ -18,7 +20,7 @@ exports.auth = function(session, id, authKey)
         //TODO: Check MD5
         if (authKey != '123')
         {
-            fulfill(Errors.ERR_AUTH_FAIL);
+            fulfill(exports.ERR_AUTH_FAIL);
             return;
         }
 
@@ -29,7 +31,7 @@ exports.auth = function(session, id, authKey)
                 jobbing: { started: false, lastTime: null }
             };
             session.auth = true;
-            fulfill("muscle body server: " + id);
+            fulfill(exports.MES_SUCCESS);
         };
 
         Player.find(id, '_id').then(

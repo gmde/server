@@ -1,5 +1,4 @@
 var Db = require('../db');
-var Errors = require('./errors');
 var Player = require('../controllers/player');
 var P = require('../p');
 
@@ -13,6 +12,10 @@ var PRIZE = { money: 5, gold: 1};
 
 exports.WEIGHT_MIN = WEIGHT_MIN * WEIGHT_DELTA;
 exports.WEIGHT_MAX = WEIGHT_MAX * WEIGHT_DELTA;
+
+exports.MES_TOOEARLY = "Слишком рано, попробуйте позже";
+exports.MES_NOTSTARTED = "Работа не начата";
+exports.MES_TIMEISUP = "Время истекло";
 
 exports.setLastTime = function(id, value)
 {
@@ -36,16 +39,15 @@ exports.get = function(session)
                 if (lastTime.setMinutes(lastTime.getMinutes() + JOBBING_PERIOD) > now)
                 {
                     session.player.jobbing = { started: false };
-                    result.available = false;
+                    fulfill(exports.MES_TOOEARLY);
                 }
                 else
                 {
                     session.player.jobbing = { started: true, lastTime: now.getTime() };
-                    result.available = true;
-                    result.weight = (Math.floor(Math.random() * (WEIGHT_MAX - WEIGHT_MIN + 1)) + WEIGHT_MIN) * WEIGHT_DELTA;
+                    var weight = (Math.floor(Math.random() * (WEIGHT_MAX - WEIGHT_MIN + 1)) + WEIGHT_MIN) * WEIGHT_DELTA;
                     exports.setLastTime(playerId, now);
+                    fulfill(weight);
                 }
-                fulfill(result);
             },
             reject
         );
@@ -58,7 +60,7 @@ exports.complete = function(session)
     {
         if (session.player.jobbing.started == false)
         {
-            fulfill(Errors.ERR_JOBBING_NOTSTARTED);
+            fulfill(exports.MES_NOTSTARTED);
             return;
         }
         session.player.jobbing.started = false;
@@ -67,7 +69,7 @@ exports.complete = function(session)
         lastTime.setSeconds(lastTime.getSeconds() + JOBBING_TIMER + MAX_DELAY);
 
         if (lastTime < new Date())
-            fulfill(Errors.ERR_JOBBING_TIMEISUP);
+            fulfill(exports.MES_TIMEISUP);
         else
             Player.incPrize(session.player.id, PRIZE).then(
                 function()

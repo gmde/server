@@ -4,40 +4,45 @@ var Player = require('../controllers/player');
 var Dics = require('./dics');
 var Gym = require('./gym');
 var Jobbing = require('./jobbing');
-var Errors = require('./errors');
+
+var ERR_DEFAULT = "Ошибка :( Перезапустите игру";
+var ERR_ISNOT_AUTH = "Player is not authorized";
+var ERR_ROUTE = "Invalid route";
+var ERR_METHOD = "Invalid method";
+var ERR_PARAM = "Invalid param: ";
 
 function handler(req, res)
 {
-    var successHandler = function (answer)
+    var successHandler = function(answer)
     {
         res.jsonp(answer);
     };
 
-    var errorHandler = function (err)
+    var errorHandler = function(err)
     {
-        console.log("Error: " + err);
-        res.jsonp({ error:-1, text:"Произошла ошибка :("});
+        console.log("error: " + err + " url: " + req.url);
+        res.jsonp(ERR_DEFAULT);
     };
 
-    var param = function (name, type)
+    var param = function(name, type)
     {
         if (type == undefined)type = 'string';
         var value = req.query[name];
-        if (value == undefined) throw 'Argument is undefined: ' + name;
+        if (value == undefined) throw ERR_PARAM + name;
         if (type == 'int')value = parseInt(value);
         return value;
     };
 
     if (req.url == '/favicon.ico')
     {
-        successHandler({ favicon:1});
+        successHandler({});
         return;
     }
 
     var session = req.session;
-    var command = req.params[0];
+    var route = req.params[0];
 
-    if (command == '/')
+    if (route == '/')
     {
         var playerId = param('playerId', 'int');
         var authKey = param('authKey');
@@ -47,14 +52,14 @@ function handler(req, res)
 
     if (session.auth == undefined || session.auth == false)
     {
-        successHandler(Errors.ERR_ISNOT_AUTH);
+        errorHandler(ERR_ISNOT_AUTH);
         return;
     }
 
     var id = session.player.id;
-    var method = param['method'];
+    var method = param('method');
 
-    switch (command)
+    switch (route)
     {
         case '/dics':
             Dics.get().then(successHandler, errorHandler);
@@ -83,7 +88,7 @@ function handler(req, res)
         case '/jobbing':
             if (method == 'get')Jobbing.get(session).then(successHandler, errorHandler);
             else if (method == 'complete')Jobbing.complete(session).then(successHandler, errorHandler);
-            else successHandler(Errors.ERR_METHOD);
+            else errorHandler(ERR_METHOD);
             break;
 
         case '/gym':
@@ -94,26 +99,31 @@ function handler(req, res)
                 var cntPlan = param('cntPlan');
                 Gym.execute(id, exerciseId, weight, cntPlan).then(successHandler, errorHandler);
             }
-            else successHandler(Errors.ERR_METHOD);
+            else errorHandler(ERR_METHOD);
             break;
 
         default:
-            successHandler(Errors.ERR_ROUTE);
+            errorHandler(ERR_ROUTE);
     }
 }
 
-exports.init = function (app)
+exports.init = function(app)
 {
-    app.get('*', function (req, res)
+    app.get('*', function(req, res)
     {
-        try
+        process.once('uncaughtException', function(e)
         {
-            handler(req, res);
-        }
-        catch (e)
-        {
-            console.log("Error: " + e);
-            res.jsonp({ error:-1, text:"Произошла ошибка :("});
-        }
+            console.log("error: " + e + " url: " + req.url);
+            res.jsonp(ERR_DEFAULT);
+        });
+//        try
+//        {
+        handler(req, res);
+//        }
+//        catch (e)
+//        {
+//            console.log("error: " + e + " url: " + req.url);
+//            res.jsonp(ERR_DEFAULT);
+//        }
     });
 };

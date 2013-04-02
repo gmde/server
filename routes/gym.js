@@ -1,6 +1,5 @@
 var Db = require('../db');
 var Player = require('../controllers/player');
-var Errors = require('./errors');
 var P = require('../p');
 
 var WEIGHT_MIN = 20;
@@ -13,25 +12,25 @@ var COEFF_POWER = 4;
 var COEFF_FRAZZLE = 10;
 var COEFF_BODYPOWER = 8;
 
+exports.MES_WEIGHT = "Вес некорректный";
+exports.MES_COUNT = "Количество повторений некорректное";
+exports.MES_ENERGY = "Не хватает энергии";
+exports.MES_CNT_ZERO = "Не хватает силы";
+
 exports.getExercisePower = function(playerBody, publicInfo, exercise)
 {
     var level = publicInfo.level;
-
     var totalPower = 0;
-
     for (var i = 0; i < exercise.body.length; i++)
     {
         var muscleExercise = exercise.body[i];
         var muscleBody = playerBody[muscleExercise._id];
         var muscleInfo = Db.dics.muscles[muscleExercise._id];
-
         var power = level * muscleInfo.power * muscleExercise.stress / COEFF_POWER;
         power = power + power * muscleBody.power / COEFF_BODYPOWER;
         power = power - power * muscleBody.frazzle / COEFF_FRAZZLE;
-
         totalPower += power;
     }
-
     totalPower = totalPower * exercise.coeff + exercise.power;
     return totalPower;
 };
@@ -41,25 +40,20 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
     return P.call(function(fulfill, reject)
     {
         var exercise = Db.dics.exercises[exerciseId];
-        if (exercise == undefined)
-        {
-            fulfill(Errors.ERR_GYM_WEIGHT);
-            return;
-        }
 
         if (WEIGHT_MIN <= weight && weight <= WEIGHT_MAX == false)
         {
-            fulfill(Errors.ERR_GYM_WEIGHT);
+            fulfill(exports.MES_WEIGHT);
             return;
         }
         if (weight % WEIGHT_DELTA != 0)
         {
-            fulfill(Errors.ERR_GYM_WEIGHT);
+            fulfill(exports.MES_WEIGHT);
             return;
         }
         if (COUNT_MIN <= cntPlan && cntPlan <= COUNT_MAX == false)
         {
-            fulfill(Errors.ERR_GYM_COUNT);
+            fulfill(exports.MES_COUNT);
             return;
         }
 
@@ -71,7 +65,7 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
 
                 if (power < weight)
                 {
-                    fulfill(Errors.ERR_CNT_ZERO);
+                    fulfill(exports.MES_CNT_ZERO);
                     return;
                 }
 
@@ -86,7 +80,7 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
                 var energyFact = Math.round((cntFact / cntPlan) * exercise.energy);
                 if (energyFact > player.private.energy)
                 {
-                    fulfill(Errors.ERR_GYM_ENERGY);
+                    fulfill(exports.MES_ENERGY);
                     return;
                 }
 

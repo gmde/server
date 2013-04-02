@@ -1,5 +1,4 @@
 var Db = require('../../db');
-var Errors = require('../../routes/errors');
 var Player = require('../../controllers/player');
 var Gym = require('../../routes/gym');
 
