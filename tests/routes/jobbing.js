@@ -1,6 +1,5 @@
 var Db = require('../../db');
 var Jobbing = require('../../routes/jobbing');
-var Errors = require('../../routes/errors');
 
 var PLAYER_ID_TEST = 0;
 var session = { player: { id: PLAYER_ID_TEST } };
@@ -22,11 +21,10 @@ exports.getSuccess = function(test)
         },
         console.log
     ).then(
-        function(answer)
+        function(weight)
         {
             test.equal(session.player.jobbing.started, true);
-            test.equal(answer.available, true);
-            test.equal(Jobbing.WEIGHT_MIN <= answer.weight && answer.weight <= Jobbing.WEIGHT_MAX, true);
+            test.equal(Jobbing.WEIGHT_MIN <= weight && weight <= Jobbing.WEIGHT_MAX, true);
             test.done();
         },
         console.log
@@ -46,8 +44,7 @@ exports.getFail = function(test)
     ).then(
         function(answer)
         {
-            test.equal(session.player.jobbing.started, false);
-            test.equal(answer.available, false);
+            test.equal(answer, Jobbing.MES_TOOEARLY);
             test.done();
         },
         console.log
@@ -69,8 +66,6 @@ exports.completeSuccess = function(test)
         function(answer)
         {
             test.equal(session.player.jobbing.started, true);
-            test.equal(answer.available, true);
-
             return Jobbing.complete(session);
         },
         console.log
@@ -99,15 +94,13 @@ exports.completeNotStarted = function(test)
         function(answer)
         {
             test.equal(session.player.jobbing.started, false);
-            test.equal(answer.available, false);
-
             return Jobbing.complete(session);
         },
         console.log
     ).then(
         function(answer)
         {
-            test.equal(answer.error, Errors.ERR_JOBBING_NOTSTARTED.error);
+            test.equal(answer, Jobbing.MES_NOTSTARTED);
             test.done();
         },
         console.log
@@ -129,7 +122,6 @@ exports.completeTimeIsUp = function(test)
         function(answer)
         {
             test.equal(session.player.jobbing.started, true);
-            test.equal(answer.available, true);
 
             var lastTime = new Date(session.player.jobbing.lastTime);
             lastTime.setSeconds(lastTime.getSeconds() - 64);
@@ -141,7 +133,7 @@ exports.completeTimeIsUp = function(test)
     ).then(
         function(answer)
         {
-            test.equal(answer.error, Errors.ERR_JOBBING_TIMEISUP.error);
+            test.equal(answer, Jobbing.MES_TIMEISUP);
             test.done();
         },
         console.log

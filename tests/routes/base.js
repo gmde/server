@@ -1,7 +1,6 @@
 var Db = require('../../db');
 var Player = require('../../controllers/player');
 var Base = require('../../routes/base');
-var Errors = require('../../routes/errors');
 
 var PLAYER_ID = 0;
 var PLAYER_ID_CREATED = 1;
@@ -20,7 +19,7 @@ exports.authSuccess = function(test)
     Base.auth(session, PLAYER_ID, AUTH_KEY).then(
         function(answer)
         {
-            test.equal(answer, "muscle body server: " + PLAYER_ID);
+            test.equal(answer, Base.MES_SUCCESS);
             test.equal(session.player.id, PLAYER_ID);
             test.done();
         },
@@ -35,7 +34,7 @@ exports.authCreate = function(test)
     Base.auth(session, PLAYER_ID_CREATED, AUTH_KEY).then(
         function(answer)
         {
-            test.equal(answer, "muscle body server: " + PLAYER_ID_CREATED);
+            test.equal(answer, Base.MES_SUCCESS);
             test.equal(session.player.id, PLAYER_ID_CREATED);
 
             return Player.find(PLAYER_ID_CREATED, '_id');
@@ -58,7 +57,8 @@ exports.authFail = function(test)
     Base.auth(session, PLAYER_ID, AUTH_KEY_WRONG).then(
         function(answer)
         {
-            test.equal(answer.error, Errors.ERR_AUTH_FAIL.error);
+            test.throws()
+            test.equal(answer, Base.ERR_AUTH_FAIL);
             test.done();
         },
         console.log
