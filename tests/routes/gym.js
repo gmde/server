@@ -71,3 +71,22 @@ exports.executeFailWeight = function(test)
         },
         console.log);
 };
+
+exports.executeFailCntPlan = function(test)
+{
+    Gym.execute(PLAYER_ID_TEST, 0, 50, 500).then(
+        function(answer)
+        {
+            test.equal(answer, Gym.MES_CNT_PLAN);
+            return Gym.execute(PLAYER_ID_TEST, 0, 50, 0);
+        },
+        console.log
+    ).then(
+        function(answer)
+        {
+            test.equal(answer, Gym.MES_CNT_PLAN);
+            test.done();
+        },
+        console.log
+    );
+};

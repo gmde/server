@@ -38,6 +38,7 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
 {
     return P.call(function(fulfill, reject)
     {
+        //TODO: check exerciseId
         var exercise = Db.dics.exercises[exerciseId];
 
         if (weight < WEIGHT_MIN || WEIGHT_MAX < weight || weight % WEIGHT_DELTA != 0)
@@ -45,7 +46,7 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
             fulfill(exports.MES_WEIGHT);
             return;
         }
-        if (COUNT_MIN <= cntPlan && cntPlan <= COUNT_MAX == false)
+        if (cntPlan < COUNT_MIN || COUNT_MAX < cntPlan)
         {
             fulfill(exports.MES_CNT_PLAN);
             return;
