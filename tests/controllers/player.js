@@ -39,7 +39,7 @@ exports.exists = function(test)
     Player.find(PLAYER_ID_TEST, '_id').then(
         function(_id)
         {
-            test.equal(_id != undefined, true);
+            test.equal(_id != null, true);
             test.done();
         },
         console.log
@@ -51,7 +51,7 @@ exports.notExists = function(test)
     Player.find(PLAYER_ID_NOT_EXISTS, '_id').then(
         function(_id)
         {
-            test.equal(_id == undefined, true);
+            test.equal(_id == null, true);
             test.done();
         },
         console.log
@@ -64,7 +64,7 @@ exports.find = function(test)
     Player.find(PLAYER_ID_TEST, field).then(
         function(data)
         {
-            test.equal(data != undefined, true);
+            test.equal(data != null, true);
             test.done();
         },
         console.log

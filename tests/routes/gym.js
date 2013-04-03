@@ -18,7 +18,7 @@ exports.getExercisePower = function(test)
     Player.find(session.player.id, 'body').then(
         function(data)
         {
-            var body = data;
+            body = data;
             return Player.find(session.player.id, 'public');
         },
         console.log
@@ -33,7 +33,7 @@ exports.getExercisePower = function(test)
     );
 };
 
-exports.execute = function(test)
+exports.executeSuccess = function(test)
 {
     Gym.execute(PLAYER_ID_TEST, 0, 35, 12).then(
         function(answer)
@@ -45,4 +45,29 @@ exports.execute = function(test)
         },
         console.log
     ).then(test.done, console.log);
+};
+
+exports.executeFailWeight = function(test)
+{
+    Gym.execute(PLAYER_ID_TEST, 0, 10, 12).then(
+        function(answer)
+        {
+            test.equal(answer, Gym.MES_WEIGHT);
+            return Gym.execute(PLAYER_ID_TEST, 0, 1000, 12);
+        },
+        console.log
+    ).then(
+        function(answer)
+        {
+            test.equal(answer, Gym.MES_WEIGHT);
+            return Gym.execute(PLAYER_ID_TEST, 0, 33.231, 12);
+        },
+        console.log
+    ).then(
+        function(answer)
+        {
+            test.equal(answer, Gym.MES_WEIGHT);
+            test.done();
+        },
+        console.log);
 };

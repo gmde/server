@@ -111,19 +111,19 @@ exports.init = function(app)
 {
     app.get('*', function(req, res)
     {
-        process.once('uncaughtException', function(e)
-        {
-            console.log("error: " + e + " url: " + req.url);
-            res.jsonp(ERR_DEFAULT);
-        });
-//        try
-//        {
-        handler(req, res);
-//        }
-//        catch (e)
+//        process.once('uncaughtException', function(e)
 //        {
 //            console.log("error: " + e + " url: " + req.url);
 //            res.jsonp(ERR_DEFAULT);
-//        }
+//        });
+        try
+        {
+        handler(req, res);
+        }
+        catch (e)
+        {
+            console.log("error: " + e + " url: " + req.url);
+            res.jsonp(ERR_DEFAULT);
+        }
     });
 };

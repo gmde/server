@@ -13,9 +13,8 @@ var COEFF_FRAZZLE = 10;
 var COEFF_BODYPOWER = 8;
 
 exports.MES_WEIGHT = "Вес некорректный";
-exports.MES_COUNT = "Количество повторений некорректное";
+exports.MES_CNT_PLAN = "Количество повторений некорректное";
 exports.MES_ENERGY = "Не хватает энергии";
-exports.MES_CNT_ZERO = "Не хватает силы";
 
 exports.getExercisePower = function(playerBody, publicInfo, exercise)
 {
@@ -41,34 +40,35 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
     {
         var exercise = Db.dics.exercises[exerciseId];
 
-        if (WEIGHT_MIN <= weight && weight <= WEIGHT_MAX == false)
-        {
-            fulfill(exports.MES_WEIGHT);
-            return;
-        }
-        if (weight % WEIGHT_DELTA != 0)
+        if (weight < WEIGHT_MIN || WEIGHT_MAX < weight || weight % WEIGHT_DELTA != 0)
         {
             fulfill(exports.MES_WEIGHT);
             return;
         }
         if (COUNT_MIN <= cntPlan && cntPlan <= COUNT_MAX == false)
         {
-            fulfill(exports.MES_COUNT);
+            fulfill(exports.MES_CNT_PLAN);
             return;
         }
 
         Player.find(playerId, ['body', 'public', 'private']).then(
             function(player)
             {
-                var mass = player.public.level * 1.33 + 40;
-                var power = exports.getExercisePower(player.body, player.public, exercise);
-
-                if (power < weight)
+                if (player.private.energy < exercise.energy)
                 {
-                    fulfill(exports.MES_CNT_ZERO);
+                    fulfill(exports.MES_ENERGY);
                     return;
                 }
 
+                var power = exports.getExercisePower(player.body, player.public, exercise);
+//
+//                if (power < weight)
+//                {
+//                    fulfill(exports.MES_CNT_ZERO);
+//                    return;
+//                }
+
+                var mass = player.public.level * 1.33 + 40;
                 var k1 = 1 - weight / power;
                 var cntMax = Math.floor(k1 / 0.03 + k1 * k1 * 35 + 1);
                 var k2 = weight * cntMax - weight * cntMax * (k1 + 0.25) + weight;

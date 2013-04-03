@@ -37,7 +37,7 @@ exports.auth = function(session, id, authKey)
         Player.find(id, '_id').then(
             function(_id)
             {
-                if (_id == undefined)
+                if (_id == null)
                 {
                     Player.create(id).then(initSession, reject);
                 }

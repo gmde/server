@@ -57,7 +57,7 @@ exports.create = function(id)
 
 exports.find = function(id, shown)
 {
-    //todo: save shown
+    var shownBase = shown;
     if (typeof shown === 'string')
         shown = [shown];
     var target = {};
@@ -71,8 +71,9 @@ exports.find = function(id, shown)
             if (err)reject(err);
             else
             {
-                if (typeof shown === 'string')
-                    fulfill(data[shown]);
+                if (data == null) fulfill(null);
+                else if (typeof shownBase === 'string')
+                    fulfill(data[shownBase]);
                 else fulfill(data);
             }
         });
