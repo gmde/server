@@ -1,3 +1,5 @@
+exports.ENERGY_MAX = 100;
+
 exports.newPlayer = function()
 {
     return {
@@ -108,8 +110,8 @@ exports.newPlayer = function()
         private: {
             money: 125,
             gold: 12,
-            energy: 100,
-            energyMax: 100
+            energy: exports.ENERGY_MAX,
+            energyMax: exports.ENERGY_MAX
         },
         public: {
             place: 0,

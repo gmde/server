@@ -55,19 +55,12 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
         Player.find(playerId, ['body', 'public', 'private']).then(
             function(player)
             {
-                if (player.private.energy < exercise.energy)
+                var power = exports.getExercisePower(player.body, player.public, exercise);
+                if (power < weight)
                 {
-                    fulfill(exports.MES_ENERGY);
+                    fulfill({ cntMax: power/weight, cntFact: power/weight, energy: exercise.energy });
                     return;
                 }
-
-                var power = exports.getExercisePower(player.body, player.public, exercise);
-//
-//                if (power < weight)
-//                {
-//                    fulfill(exports.MES_CNT_ZERO);
-//                    return;
-//                }
 
                 var mass = player.public.level * 1.33 + 40;
                 var k1 = 1 - weight / power;
