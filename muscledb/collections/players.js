@@ -130,13 +130,13 @@ player0.factors.push(1001);
 player0.factors.push(1002);
 player0.records.push({
     "_id": 0,
-    "value": 125,
+    "weight": 125,
     "date": new Date(),
     "isWR": false
 });
 player0.records.push({
     "_id": 1,
-    "value": 225,
+    "weight": 225,
     "date": new Date(),
     "isWR": true
 });
