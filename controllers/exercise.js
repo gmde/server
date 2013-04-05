@@ -1,85 +1,115 @@
 var Db = require('../db');
 var P = require('../p');
 
+function setNewPR(playerId, pr, exerciseId, weight)
+{
+    if (pr == null)
+    {
+        //push
+        Db.players.update(
+            {_id:playerId},
+            {
+                $push:{
+                    records:{
+                        _id:exerciseId,
+                        weight:weight,
+                        date:new Date(),
+                        isWR:false
+                    }
+                }
+            }
+        );
+    }
+    else
+    {
+        //update
+        Db.players.update(
+            {_id: playerId},
+            {
+                $set:
+                {
+                    'records.$.weight':weight,
+                    'records.$.date':new Date(),
+                    'records.$.isWR':false
+                }
+            }
+        );
+    }
+}
+
 function setNewWR(playerId, exerciseId, weight)
 {
 
 }
 
-exports.checkRecord = function(playerId, records, exerciseId, weight)
+exports.checkRecord = function (playerId, records, exerciseId, weight)
 {
-    var record = null;
-    for(var i = 0; i < records.length; i++)
+    var result = null;
+    var pr = null;
+    for (var i = 0; i < records.length; i++)
     {
-        if (records[i]._id == exerciseId)record = records[i];
+        if (records[i]._id == exerciseId)pr = records[i];
     }
 
-    if (record != null)
+    if (pr != null)
     {
-        if (record.weight >= weight) return null;
+        if (pr.weight >= weight) return result;
     }
 
-    setNewPR(playerId, exerciseId, weight);
+    result.PR = true;
+    setNewPR(playerId, pr, exerciseId, weight);
 
     var exercise = Db.dics.exercises[exerciseId];
     if (exercise.record != null)
     {
-        setNewWR(playerId, weight, )
+        if (exercise.record.weight > weight) return result;
     }
 
-    return P.call(function(fulfill, reject, handler)
+    result.WR = true;
+    setNewWR(playerId, exerciseId, weight);
+};
+
+exports.decEnergy = function (id, value)
+{
+    return P.call(function (fulfill, reject, handler)
     {
         Db.players.update(
-            { _id: id },
+            { _id:id },
             {
-                $inc: {'private.money': prize.money, 'private.gold': prize.gold}
+                $inc:{ 'private.energy':-value }
             },
             handler
         );
     });
 };
 
-exports.decEnergy = function(id, value)
+exports.remove = function (id)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
-        Db.players.update(
-            { _id: id },
-            {
-                $inc: { 'private.energy': -value }
-            },
-            handler
-        );
+        Db.players.remove({ _id:id}, handler);
     });
 };
 
-exports.remove = function(id)
+exports.update = function (id, values)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
-        Db.players.remove({ _id: id}, handler);
+        Db.players.update({ _id:id}, values, handler);
     });
 };
 
-exports.update = function(id, values)
-{
-    return P.call(function(fulfill, reject, handler)
-    {
-        Db.players.update({ _id: id}, values, handler);
-    });
-};
-
-exports.create = function(id)
+exports.create = function (id)
 {
     var newPlayer = require('../muscledb/collections/players').newPlayer();
     newPlayer._id = id;
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         Db.players.insert(newPlayer, handler);
     });
 };
 
-exports.find = function(id, shown)
+exports.find = function (id, shown)
 {
     var shownBase = shown;
     if (typeof shown === 'string')
@@ -88,9 +118,9 @@ exports.find = function(id, shown)
     for (var i = 0; i < shown.length; i++)
         target[shown[i]] = 1;
 
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
-        Db.players.findOne({ _id: id }, target, function(err, data)
+        Db.players.findOne({ _id:id }, target, function (err, data)
         {
             if (err)reject(err);
             else
