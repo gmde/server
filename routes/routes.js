@@ -5,7 +5,7 @@ var Dics = require('./dics');
 var Gym = require('./gym');
 var Jobbing = require('./jobbing');
 
-var ERR_DEFAULT = "Ошибка :( Перезапустите игру";
+var ERR_DEFAULT = { error: "Ошибка :( Перезапустите игру"};
 var ERR_ISNOT_AUTH = "Player is not authorized";
 var ERR_ROUTE = "Invalid route";
 var ERR_METHOD = "Invalid method";
@@ -94,9 +94,9 @@ function handler(req, res)
         case '/gym':
             if (method == 'execute')
             {
-                var exerciseId = param('exerciseId');
-                var weight = param('weight');
-                var cntPlan = param('cntPlan');
+                var exerciseId = param('exerciseId', 'int');
+                var weight = param('weight', 'int');
+                var cntPlan = param('cntPlan', 'int');
                 Gym.execute(id, exerciseId, weight, cntPlan).then(successHandler, errorHandler);
             }
             else errorHandler(ERR_METHOD);

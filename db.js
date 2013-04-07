@@ -18,13 +18,13 @@ exports.DEVELOP = {
     password: '24547294'
 };
 
-var defaultOptions = null;
-
+var defaultOptions = exports.DEVELOP;
 var Mongo = require('mongodb');
 var Server = Mongo.Server;
 var Db = Mongo.Db;
 var P = require('./p');
 var Vow = require('vow');
+var init = false;
 
 exports.connect = function(options)
 {
@@ -38,8 +38,6 @@ exports.connect = function(options)
         )
     );
 
-    defaultOptions = options;
-
     return P.call(function(fulfill, reject)
     {
         dbInstance.open(function(err, db)
@@ -48,31 +46,36 @@ exports.connect = function(options)
             else
             {
                 exports.db = db;
-                fulfill(db);
+                auth(options).then(fulfill, reject);
             }
         });
     });
 };
 
-exports.auth = function()
+function auth(options)
 {
     return P.call(function(fulfill, reject, handler)
     {
-        exports.db.authenticate(defaultOptions.username, defaultOptions.password, handler);
+        exports.db.authenticate(options.username, options.password, handler);
     });
+}
+
+exports.initDevelop = function()
+{
+    return exports.init(exports.DEVELOP);
 };
+
 
 exports.init = function(options)
 {
     return P.call(function(fulfill, reject)
     {
-        if (exports.db != undefined)
+        if (init == true)
         {
             fulfill();
             return;
         }
         exports.connect(options)
-            .then(exports.auth, reject)
             .then(
             function()
             {
@@ -94,6 +97,7 @@ exports.init = function(options)
             function(dics)
             {
                 exports.dics = dics;
+                init = true;
                 fulfill();
             }, reject);
     });
@@ -114,7 +118,20 @@ exports.find = function(collName)
         exports.collection(collName).then(
             function(coll)
             {
-                coll.find().toArray(handler);
+                coll.find({$query: {}, $orderby: { _id: 1 }}).toArray(handler);
+            }, reject
+        );
+    });
+};
+
+exports.remove = function(collName)
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        exports.collection(collName).then(
+            function(coll)
+            {
+                coll.remove(handler);
             }, reject
         );
     });

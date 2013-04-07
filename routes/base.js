@@ -1,8 +1,8 @@
 var Player = require('../controllers/player');
 var P = require('../p');
 
-exports.ERR_AUTH_FAIL = "Authorization fail";
-exports.MES_SUCCESS = "Success";
+exports.ERR_AUTH_FAIL = { message: "Authorization fail"};
+exports.MES_SUCCESS = { message: "Success"};
 
 exports.auth = function(session, id, authKey)
 {
@@ -12,7 +12,7 @@ exports.auth = function(session, id, authKey)
         {
             if (session.player.id == id)
             {
-                fulfill(exports.MES_SUCCESS + id);
+                fulfill(exports.MES_SUCCESS);
                 return;
             }
         }

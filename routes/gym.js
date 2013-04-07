@@ -1,9 +1,10 @@
 var Db = require('../db');
 var Player = require('../controllers/player');
+var Exercise = require('../controllers/exercise');
 var P = require('../p');
 
 var WEIGHT_MIN = 20;
-var WEIGHT_MAX = 200;
+var WEIGHT_MAX = 1000;
 var WEIGHT_DELTA = 1.25;
 var COUNT_MIN = 1;
 var COUNT_MAX = 100;
@@ -12,9 +13,9 @@ var COEFF_POWER = 4;
 var COEFF_FRAZZLE = 10;
 var COEFF_BODYPOWER = 8;
 
-exports.MES_WEIGHT = "Вес некорректный";
-exports.MES_CNT_PLAN = "Количество повторений некорректное";
-exports.MES_ENERGY = "Не хватает энергии";
+exports.MES_WEIGHT = { message: "Вес некорректный"};
+exports.MES_CNT_PLAN = { message: "Количество повторений некорректное"};
+exports.MES_ENERGY = { message: "Не хватает энергии"};
 
 exports.getExercisePower = function(playerBody, publicInfo, exercise)
 {
@@ -52,13 +53,13 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
             return;
         }
 
-        Player.find(playerId, ['body', 'public', 'private']).then(
+        Player.find(playerId, ['body', 'public', 'records', 'private']).then(
             function(player)
             {
                 var power = exports.getExercisePower(player.body, player.public, exercise);
                 if (power < weight)
                 {
-                    fulfill({ cntMax: power/weight, cntFact: power/weight, energy: exercise.energy });
+                    fulfill({ cntMax: power / weight, cntFact: power / weight, energy: exercise.energy });
                     return;
                 }
 
@@ -78,12 +79,29 @@ exports.execute = function(playerId, exerciseId, weight, cntPlan)
                     return;
                 }
 
-                Player.decEnergy(playerId, energyFact).then(
+                var record;
+                Player.setFrazzle(playerId, player.body, exercise, effFact).then(
                     function()
                     {
-                        fulfill({ cntMax: cntMax, cntFact: cntFact, energy: energyFact });
-                    },
-                    reject
+                        return Exercise.checkRecord(playerId, player.records, exerciseId, weight);
+                    }, reject
+                ).then(
+                    function(answer)
+                    {
+                        record = answer;
+                        return Player.decEnergy(playerId, energyFact);
+                    }, reject
+                ).then(
+                    function()
+                    {
+                        fulfill(
+                            {
+                                cntMax: cntMax,
+                                cntFact: cntFact,
+                                energy: energyFact,
+                                record: record
+                            });
+                    }, reject
                 );
             },
             reject

@@ -1,5 +1,6 @@
 var Db = require('../../db');
 var Player = require('../../controllers/player');
+var Muscledb = require('../../muscledb/muscledb');
 var Gym = require('../../routes/gym');
 
 var PLAYER_ID_TEST = 0;
@@ -7,7 +8,8 @@ var session = { player:{ id:PLAYER_ID_TEST } };
 
 exports.setUp = function (callback)
 {
-    Db.init(Db.DEVELOP).then(callback, console.log);
+    //Db.init(Db.DEVELOP).then(callback, console.log);
+    Muscledb.recreate().then(callback, console.log);
 };
 
 exports.getExercisePower = function (test)
@@ -53,7 +55,7 @@ exports.executeFailWeight = function (test)
         function (answer)
         {
             test.equal(answer, Gym.MES_WEIGHT);
-            return Gym.execute(PLAYER_ID_TEST, 0, 1000, 12);
+            return Gym.execute(PLAYER_ID_TEST, 0, 1001, 12);
         },
         console.log
     ).then(
@@ -93,7 +95,7 @@ exports.executeFailCntPlan = function (test)
 
 exports.executeFailLessOneRepeat = function(test)
 {
-    Gym.execute(PLAYER_ID_TEST, 0, 180, 2).then(
+    Gym.execute(PLAYER_ID_TEST, 0, 240, 1).then(
         function (answer)
         {
             test.equal(0 < answer.cntMax && answer.cntMax < 1, true);

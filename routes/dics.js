@@ -41,4 +41,11 @@ exports.get = function ()
     });
 };
 
+exports.update = function(name)
+{
+    return P.call(function (fulfill, reject)
+    {
+        load(name).then(fulfill, reject);
+    });
+};
 

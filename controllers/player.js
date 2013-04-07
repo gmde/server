@@ -79,3 +79,32 @@ exports.find = function(id, shown)
         });
     });
 };
+
+exports.setFrazzle = function(playerId, body, exercise, frazzle)
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        var setClause = {};
+        for (var i = 0; i < exercise.body.length; i++)
+        {
+            var muscleExercise = exercise.body[i];
+            var muscleBody = body[muscleExercise._id];
+            var f = muscleBody.frazzle + muscleExercise.stress * frazzle;
+            if (f > 1) f = 1;
+            f = Math.round(f * 100)/100;
+            var e = muscleBody.effect + muscleExercise.stress * frazzle;
+            if (e > 1) e = 1;
+            e = Math.round(e * 100)/100;
+            setClause['body.' + muscleExercise._id + '.frazzle'] = f;
+            setClause['body.' + muscleExercise._id + '.effect'] = e;
+        }
+
+        Db.players.update(
+            {_id: playerId},
+            {
+                $set: setClause
+            },
+            handler
+        );
+    });
+};

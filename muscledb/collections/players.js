@@ -1,9 +1,9 @@
 exports.ENERGY_MAX = 100;
 
-exports.newPlayer = function()
+exports.newPlayer = function(id)
 {
     return {
-        _id: 0,
+        _id: id,
         awards: [],
         body: [
             {
@@ -121,26 +121,34 @@ exports.newPlayer = function()
     };
 };
 
-var player0 = exports.newPlayer();
+var player0 = exports.newPlayer(0);
 player0.awards.push(0);
 player0.awards.push(1);
 player0.awards.push(2);
 player0.factors.push(1000);
 player0.factors.push(1001);
 player0.factors.push(1002);
-player0.records.push({
-    "_id": 0,
-    "weight": 125,
-    "date": new Date(),
-    "isWR": false
-});
-player0.records.push({
-    "_id": 1,
-    "weight": 225,
-    "date": new Date(),
-    "isWR": true
-});
+//player0.records.push({
+//    "_id": 0,
+//    "weight": 125,
+//    "date": new Date(),
+//    "isWR": false
+//});
+//player0.records.push({
+//    "_id": 1,
+//    "weight": 225,
+//    "date": new Date(),
+//    "isWR": true
+//});
+
+var player1 = exports.newPlayer(1);
+player1.awards.push(0);
+player1.awards.push(1);
+player1.awards.push(2);
+player1.factors.push(1000);
+player1.factors.push(1001);
+player1.factors.push(1002);
 
 exports.players = [
-    player0
+    player0, player1
 ];

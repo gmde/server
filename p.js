@@ -10,7 +10,6 @@ exports.call = function ()
     };
     var reject = function(err)
     {
-        //console.log(err);
         promise.reject(err);
     };
     var handler = function(err, result)

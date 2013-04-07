@@ -1,5 +1,6 @@
 var Db = require('../../db');
 var Player = require('../../controllers/player');
+var Muscledb = require('../../muscledb/muscledb');
 
 //var updatePlayer = function()
 //{
@@ -28,11 +29,12 @@ var Player = require('../../controllers/player');
 
 exports.setUp = function(callback)
 {
-    Db.init(Db.DEVELOP).then(callback, console.log);
+    //Db.init(Db.DEVELOP).then(callback, console.log);
+    Muscledb.recreate().then(callback, console.log);
 };
 
 var PLAYER_ID_TEST = 0;
-var PLAYER_ID_NOT_EXISTS = 1;
+var PLAYER_ID_NOT_EXISTS = -1;
 
 exports.exists = function(test)
 {
@@ -74,9 +76,9 @@ exports.find = function(test)
 exports.create = function(test)
 {
     Player.find(PLAYER_ID_NOT_EXISTS, 'public').then(
-        function(pubilcInfo)
+        function(publicInfo)
         {
-            test.equal(pubilcInfo == undefined, true);
+            test.equal(publicInfo == undefined, true);
             return Player.create(PLAYER_ID_NOT_EXISTS);
         },
         console.log
@@ -87,13 +89,13 @@ exports.create = function(test)
         },
         console.log
     ).then(
-        function(pubilcInfo)
+        function(publicInfo)
         {
-            test.equal(pubilcInfo != undefined, true);
-            return Player.remove(PLAYER_ID_NOT_EXISTS);
+            test.equal(publicInfo != undefined, true);
+            test.done();
         },
         console.log
-    ).then(test.done, console.log);
+    );
 };
 
 exports.incPrize = function(test)
@@ -147,8 +149,57 @@ exports.decEnergy = function(test)
         function(privateInfo2)
         {
             test.equal(privateInfo2.energy, privateInfo1.energy - value);
-            return Player.decEnergy(PLAYER_ID_TEST, -value);
+            test.done();
         },
         console.log
-    ).then(test.done, console.log);
+    );
+};
+
+exports.setFrazzle = function(test)
+{
+    var exercise = Db.dics.exercises[0];
+    Player.find(PLAYER_ID_TEST, 'body').then(
+        function(body)
+        {
+            return Player.setFrazzle(PLAYER_ID_TEST, body, exercise, 0.5);
+        },console.log
+    ).then(
+        function()
+        {
+            return Player.find(PLAYER_ID_TEST, 'body');
+        },console.log
+    ).then(
+        function(body)
+        {
+            test.equal(body[2].frazzle, 0.25);
+            test.equal(body[2].effect, 0.25);
+            test.equal(body[4].frazzle, 0.4);
+            test.equal(body[4].effect, 0.4);
+            test.equal(body[5].frazzle, 0.15);
+            test.equal(body[5].effect, 0.15);
+            test.equal(body[6].frazzle, 0.5);
+            test.equal(body[6].effect, 0.5);
+
+            return Player.setFrazzle(PLAYER_ID_TEST, body, exercise, 1);
+        },console.log
+    ).then(
+        function()
+        {
+            return Player.find(PLAYER_ID_TEST, 'body');
+        },console.log
+    ).then(
+        function(body)
+        {
+            test.equal(body[2].frazzle, 0.75);
+            test.equal(body[2].effect, 0.75);
+            test.equal(body[4].frazzle, 1);
+            test.equal(body[4].effect, 1);
+            test.equal(body[5].frazzle, 0.45);
+            test.equal(body[5].effect, 0.45);
+            test.equal(body[6].frazzle, 1);
+            test.equal(body[6].effect, 1);
+
+            test.done();
+        }
+    )
 };

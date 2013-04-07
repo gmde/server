@@ -3,7 +3,7 @@ exports.exercises = [
         { "_id": 2, "stress": 0.5 },
         { "_id": 4, "stress": 0.8 },
         { "_id": 5, "stress": 0.3 },
-        { "_id": 5, "stress": 1.0 }
+        { "_id": 6, "stress": 1.0 }
     ]},
     { _id: 1, name: "Присед", coeff: 1, power: 40, energy: 7, record: null, body: [
         { "_id": 11, "stress": 0.7 },

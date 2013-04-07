@@ -13,9 +13,9 @@ var PRIZE = { money: 5, gold: 1};
 exports.WEIGHT_MIN = WEIGHT_MIN * WEIGHT_DELTA;
 exports.WEIGHT_MAX = WEIGHT_MAX * WEIGHT_DELTA;
 
-exports.MES_TOOEARLY = "Слишком рано, попробуйте позже";
-exports.MES_NOTSTARTED = "Работа не начата";
-exports.MES_TIMEISUP = "Время истекло";
+exports.MES_TOOEARLY = { message: "Слишком рано, попробуйте позже"};
+exports.MES_NOTSTARTED = { message: "Работа не начата"};
+exports.MES_TIMEISUP = { message: "Время истекло"};
 
 exports.setLastTime = function(id, value)
 {

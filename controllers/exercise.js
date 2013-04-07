@@ -1,135 +1,121 @@
 var Db = require('../db');
+var Dics = require('../routes/dics');
 var P = require('../p');
 
 function setNewPR(playerId, pr, exerciseId, weight)
 {
-    if (pr == null)
+    return P.call(function(fulfill, reject, handler)
     {
-        //push
-        Db.players.update(
-            {_id:playerId},
-            {
-                $push:{
-                    records:{
-                        _id:exerciseId,
-                        weight:weight,
-                        date:new Date(),
-                        isWR:false
-                    }
-                }
-            }
-        );
-    }
-    else
-    {
-        //update
-        Db.players.update(
-            {_id: playerId},
-            {
-                $set:
+        if (pr == null)
+        {
+            Db.players.update(
+                {_id: playerId},
                 {
-                    'records.$.weight':weight,
-                    'records.$.date':new Date(),
-                    'records.$.isWR':false
-                }
-            }
-        );
-    }
+                    $push: {
+                        records: {
+                            _id: exerciseId,
+                            weight: weight,
+                            date: new Date()
+                        }
+                    }
+                },
+                handler
+            );
+        }
+        else
+        {
+            Db.players.update(
+                {_id: playerId, 'records.$._id': exerciseId},
+                {
+                    $set: {
+                        'records.$.weight': weight,
+                        'records.$.date': new Date()
+                    }
+                },
+                handler
+            );
+        }
+    });
 }
 
 function setNewWR(playerId, exerciseId, weight)
 {
-
+    return P.call(function(fulfill, reject, handler)
+    {
+        Db.exercises.update(
+            {_id: exerciseId},
+            {
+                $set: {
+                    record: {
+                        weight: weight,
+                        data: new Date(),
+                        playerId: playerId
+                    }
+                }
+            },
+            function(err)
+            {
+                if (err)
+                {
+                    reject(err);
+                    return;
+                }
+                Dics.update('exercises').then(fulfill, reject);
+            }
+        );
+    });
 }
 
-exports.checkRecord = function (playerId, records, exerciseId, weight)
+var getPR = function(records, exerciseId)
 {
-    var result = null;
     var pr = null;
     for (var i = 0; i < records.length; i++)
     {
         if (records[i]._id == exerciseId)pr = records[i];
     }
-
-    if (pr != null)
-    {
-        if (pr.weight >= weight) return result;
-    }
-
-    result.PR = true;
-    setNewPR(playerId, pr, exerciseId, weight);
-
-    var exercise = Db.dics.exercises[exerciseId];
-    if (exercise.record != null)
-    {
-        if (exercise.record.weight > weight) return result;
-    }
-
-    result.WR = true;
-    setNewWR(playerId, exerciseId, weight);
+    return pr;
 };
 
-exports.decEnergy = function (id, value)
+exports.checkRecord = function(playerId, records, exerciseId, weight)
 {
-    return P.call(function (fulfill, reject, handler)
+    return P.call(function(fulfill, reject, handler)
     {
-        Db.players.update(
-            { _id:id },
-            {
-                $inc:{ 'private.energy':-value }
-            },
-            handler
-        );
-    });
-};
-
-exports.remove = function (id)
-{
-    return P.call(function (fulfill, reject, handler)
-    {
-        Db.players.remove({ _id:id}, handler);
-    });
-};
-
-exports.update = function (id, values)
-{
-    return P.call(function (fulfill, reject, handler)
-    {
-        Db.players.update({ _id:id}, values, handler);
-    });
-};
-
-exports.create = function (id)
-{
-    var newPlayer = require('../muscledb/collections/players').newPlayer();
-    newPlayer._id = id;
-    return P.call(function (fulfill, reject, handler)
-    {
-        Db.players.insert(newPlayer, handler);
-    });
-};
-
-exports.find = function (id, shown)
-{
-    var shownBase = shown;
-    if (typeof shown === 'string')
-        shown = [shown];
-    var target = {};
-    for (var i = 0; i < shown.length; i++)
-        target[shown[i]] = 1;
-
-    return P.call(function (fulfill, reject, handler)
-    {
-        Db.players.findOne({ _id:id }, target, function (err, data)
+        var result = { PR: false, WR: false };
+        var pr = getPR(records, exerciseId);
+        if (pr != null)
         {
-            if (err)reject(err);
-            else
+            if (pr.weight >= weight)
             {
-                if (data == null) fulfill(null);
-                else if (typeof shownBase === 'string')
-                    fulfill(data[shownBase]);
-                else fulfill(data);
+                fulfill(result);
+                return;
             }
-        });
+        }
+
+        result.PR = true;
+        setNewPR(playerId, pr, exerciseId, weight).then(
+            function()
+            {
+                var exercise = Db.dics.exercises[exerciseId];
+                if (exercise.record != null)
+                {
+                    if (exercise.record.weight > weight)
+                    {
+                        fulfill(result);
+                        return;
+                    }
+                }
+
+                result.WR = true;
+                setNewWR(playerId, exerciseId, weight).then(
+                    function()
+                    {
+                        fulfill(result);
+                        return;
+                    },
+                    reject
+                );
+            },
+            reject
+        );
     });
 };
