@@ -6,16 +6,18 @@ var P = require('../p');
 var WEIGHT_MIN = 20;
 var WEIGHT_MAX = 1000;
 var WEIGHT_DELTA = 1.25;
-var COUNT_MIN = 1;
-var COUNT_MAX = 100;
+var REPEATS_MIN = 1;
+var REPEATS_MAX = 200;
 
 var COEFF_POWER = 4;
 var COEFF_FRAZZLE = 10;
 var COEFF_BODYPOWER = 8;
 
-exports.MES_WEIGHT = { message: "Вес некорректный"};
-exports.MES_CNT_PLAN = { message: "Количество повторений некорректное"};
-exports.MES_ENERGY = { message: "Не хватает энергии"};
+exports.MES_WEIGHT_MIN = { message: "Вес слишком маленький"};
+exports.MES_REPEATS_MAX = { message: "Нет смысла делать столько повторений"};
+exports.MES_REPEATS_MIN = { message: "Сделай хотя бы одно повторение"};
+exports.MES_ENERGY = { message: "Не хватает энергии, отдохни и подкрепись"};
+exports.MES_EXERCISE = { message: "Упражнение недоступно"};
 
 exports.getExercisePower = function(playerBody, publicInfo, exercise)
 {
@@ -35,10 +37,18 @@ exports.getExercisePower = function(playerBody, publicInfo, exercise)
     return totalPower;
 };
 
-exports.execute = function(playerId, exerciseId, weight, cntPlan)
+exports.execute = function(playerId, gymId, exerciseId, weight, repeats)
 {
     return P.call(function(fulfill, reject)
     {
+        var gym = Db.dics.gyms[gymId];
+        if (gym.exercises.indexOf(exerciseId) == -1)
+        {
+            fulfill(exports.MES_EXERCISE);
+            return;
+        }
+
+        //TODO: check max weight for GYM
         //TODO: check exerciseId
         var exercise = Db.dics.exercises[exerciseId];
 
