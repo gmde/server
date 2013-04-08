@@ -4,8 +4,8 @@ var Exercise = require('../controllers/exercise');
 var P = require('../p');
 
 var WEIGHT_MIN = 20;
-var WEIGHT_MAX = 1000;
-var WEIGHT_DELTA = 1.25;
+//var WEIGHT_MAX = 1000;
+//var WEIGHT_DELTA = 1.25;
 var REPEATS_MIN = 1;
 var REPEATS_MAX = 200;
 
@@ -13,7 +13,7 @@ var COEFF_POWER = 4;
 var COEFF_FRAZZLE = 10;
 var COEFF_BODYPOWER = 8;
 
-exports.MES_WEIGHT_MIN = { message: "Вес слишком маленький"};
+exports.MES_WEIGHT= { message: "Нельзя собрать такой вес"};
 exports.MES_REPEATS_MAX = { message: "Нет смысла делать столько повторений"};
 exports.MES_REPEATS_MIN = { message: "Сделай хотя бы одно повторение"};
 exports.MES_ENERGY = { message: "Не хватает энергии, отдохни и подкрепись"};
@@ -48,18 +48,21 @@ exports.execute = function(playerId, gymId, exerciseId, weight, repeats)
             return;
         }
 
-        //TODO: check max weight for GYM
-        //TODO: check exerciseId
         var exercise = Db.dics.exercises[exerciseId];
 
-        if (weight < WEIGHT_MIN || WEIGHT_MAX < weight || weight % WEIGHT_DELTA != 0)
+        if (weight < WEIGHT_MIN || gym.max < weight || weight % gym.delta != 0)
         {
             fulfill(exports.MES_WEIGHT);
             return;
         }
-        if (cntPlan < COUNT_MIN || COUNT_MAX < cntPlan)
+        if (repeats < REPEATS_MIN)
         {
-            fulfill(exports.MES_CNT_PLAN);
+            fulfill(exports.MES_REPEATS_MIN);
+            return;
+        }
+        if (repeats > REPEATS_MAX)
+        {
+            fulfill(exports.MES_REPEATS_MAX);
             return;
         }
 
