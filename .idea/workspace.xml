@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8d83105f-c520-4436-b1b1-f36349c1f21e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/muscledb/collections/gyms.js" afterPath="$PROJECT_DIR$/muscledb/collections/gyms.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/gym.js" afterPath="$PROJECT_DIR$/routes/gym.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/routes/gym.js" afterPath="$PROJECT_DIR$/tests/routes/gym.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +22,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.44705173">
+    <splitter split-orientation="horizontal" split-proportion="0.5181224">
       <split-first>
         <leaf>
           <file leaf-file-name="jobbing.js" pinned="false" current="false" current-in-tab="false">
@@ -34,15 +36,6 @@
           </file>
           <file leaf-file-name="jobbing.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/routes/jobbing.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="awards.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/muscledb/collections/awards.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
@@ -89,7 +82,16 @@
           <file leaf-file-name="gym.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/gym.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="22" column="1" selection-start="759" selection-end="759" vertical-scroll-proportion="0.39426523">
+                <state line="55" column="9" selection-start="1873" selection-end="1873" vertical-scroll-proportion="0.83870965">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="factors.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/muscledb/collections/factors.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -107,7 +109,7 @@
           <file leaf-file-name="gyms.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/muscledb/collections/gyms.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="6" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0">
+                <state line="22" column="40" selection-start="885" selection-end="885" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -153,19 +155,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="gym.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="gym.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/routes/gym.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="60" column="11" selection-start="1578" selection-end="1578" vertical-scroll-proportion="0.0">
+                <state line="111" column="19" selection-start="2911" selection-end="2911" vertical-scroll-proportion="0.47605225">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="base.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="base.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/routes/base.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="52" selection-start="310" selection-end="310" vertical-scroll-proportion="0.01724138">
+                <state line="11" column="52" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -196,20 +198,20 @@
         <option value="$PROJECT_DIR$/muscledb/collections/exercises.js" />
         <option value="$PROJECT_DIR$/tests/controllers/player.js" />
         <option value="$PROJECT_DIR$/controllers/player.js" />
-        <option value="$PROJECT_DIR$/tests/routes/gym.js" />
         <option value="$PROJECT_DIR$/routes/jobbing.js" />
         <option value="$PROJECT_DIR$/routes/base.js" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/muscledb/collections/gyms.js" />
+        <option value="$PROJECT_DIR$/tests/routes/gym.js" />
         <option value="$PROJECT_DIR$/routes/gym.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="1362" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -373,12 +375,12 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/routes/jobbing.js" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/routes/jobbing.js" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -386,7 +388,7 @@
       <recent name="C:\github\server\controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.index.js">
+  <component name="RunManager" selected="Nodeunit.gym.js">
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="C:/Program Files/nodejs/node" />
       <envs />
@@ -566,22 +568,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="1362" y="-4" width="1928" height="1088" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849163" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12387981" sideWeight="0.6044693" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39553073" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1234375" sideWeight="0.752588" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39544514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2480447" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24741201" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849163" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -641,47 +643,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/tests/routes/gym.js</url>
-          <line>97</line>
-          <option name="timeStamp" value="186" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/tests/routes/gym.js</url>
-          <line>100</line>
-          <option name="timeStamp" value="188" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="194" />
+      <option name="time" value="195" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/muscledb/collections/muscles_view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.14146341" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/muscledb/collections/muscles.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.4522293" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/muscledb/collections/factors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.6435185" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/controllers/exercise.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="0" selection-start="1673" selection-end="1673" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/routes/gym.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="11" selection-start="1578" selection-end="1578" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -737,7 +710,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/routes/base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="52" selection-start="310" selection-end="310" vertical-scroll-proportion="0.01724138">
+        <state line="11" column="52" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/muscledb/collections/awards.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/muscledb/collections/factors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -751,14 +738,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/muscledb/collections/gyms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="6" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0">
+        <state line="22" column="40" selection-start="885" selection-end="885" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/routes/gym.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="111" column="19" selection-start="2911" selection-end="2911" vertical-scroll-proportion="0.47605225">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/gym.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="1" selection-start="759" selection-end="759" vertical-scroll-proportion="0.39426523">
+        <state line="55" column="9" selection-start="1873" selection-end="1873" vertical-scroll-proportion="0.83870965">
           <folding />
         </state>
       </provider>

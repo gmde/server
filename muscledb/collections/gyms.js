@@ -15,7 +15,7 @@ exports.gyms = [
         }
     },
     {
-        _id: 2, desc: "Зал 3", img: 'gym2', exercises: [ 0, 1, 2, 3, 4 ], max: 200, delta: 1.25,
+        _id: 2, desc: "Зал 3", img: 'gym2', exercises: [ 0, 1, 2, 3, 4 ], max: 300, delta: 1.25,
         req: {
             conditions: [
                 { level: 50, friends: 15 },

@@ -4,8 +4,6 @@ var Exercise = require('../controllers/exercise');
 var P = require('../p');
 
 var WEIGHT_MIN = 20;
-//var WEIGHT_MAX = 1000;
-//var WEIGHT_DELTA = 1.25;
 var REPEATS_MIN = 1;
 var REPEATS_MAX = 200;
 
@@ -21,6 +19,7 @@ exports.MES_EXERCISE = { message: "Упражнение недоступно"};
 
 exports.getExercisePower = function(playerBody, publicInfo, exercise)
 {
+    //TODO: stimulants
     var level = publicInfo.level;
     var totalPower = 0;
     for (var i = 0; i < exercise.body.length; i++)
@@ -72,20 +71,20 @@ exports.execute = function(playerId, gymId, exerciseId, weight, repeats)
                 var power = exports.getExercisePower(player.body, player.public, exercise);
                 if (power < weight)
                 {
-                    fulfill({ cntMax: power / weight, cntFact: power / weight, energy: exercise.energy });
+                    fulfill({ repeatsMax: power / weight, repeats: power / weight, energy: exercise.energy });
                     return;
                 }
 
                 var mass = player.public.level * 1.33 + 40;
                 var k1 = 1 - weight / power;
-                var cntMax = Math.floor(k1 / 0.03 + k1 * k1 * 35 + 1);
-                var k2 = weight * cntMax - weight * cntMax * (k1 + 0.25) + weight;
+                var repeatsMax = Math.floor(k1 / 0.03 + k1 * k1 * 35 + 1);
+                var k2 = weight * repeatsMax - weight * repeatsMax * (k1 + 0.25) + weight;
                 var effMax = k2 / (mass * 15);
 
-                var cntFact = cntPlan < cntMax ? cntPlan : cntMax;
-                var effFact = (cntFact / cntPlan) * effMax;
+                var repeatsFact = repeats < repeatsMax ? repeats : repeatsMax;
+                var effFact = (repeatsFact / repeats) * effMax;
 
-                var energyFact = Math.round((cntFact / cntPlan) * exercise.energy);
+                var energyFact = Math.round((repeatsFact / repeats) * exercise.energy);
                 if (energyFact > player.private.energy)
                 {
                     fulfill(exports.MES_ENERGY);
@@ -109,8 +108,8 @@ exports.execute = function(playerId, gymId, exerciseId, weight, repeats)
                     {
                         fulfill(
                             {
-                                cntMax: cntMax,
-                                cntFact: cntFact,
+                                repeatsMax: repeatsMax,
+                                repeats: repeatsFact,
                                 energy: energyFact,
                                 record: record
                             });
