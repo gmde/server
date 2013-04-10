@@ -1,6 +1,6 @@
 var Db = require('../db');
 var Player = require('../controllers/player');
-var Exercise = require('../controllers/exercise');
+var Record = require('../controllers/record');
 var P = require('../p');
 
 var WEIGHT_MIN = 20;
@@ -95,7 +95,7 @@ exports.execute = function(playerId, gymId, exerciseId, weight, repeats)
                 Player.setFrazzle(playerId, player.body, exercise, effFact).then(
                     function()
                     {
-                        return Exercise.checkRecord(playerId, player.records, exerciseId, weight);
+                        return Record.check(playerId, player.records, exerciseId, weight);
                     }, reject
                 ).then(
                     function(answer)

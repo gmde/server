@@ -1,7 +1,7 @@
 var Db = require('../../db');
 var Muscledb = require('../../muscledb/muscledb');
 var Player = require('../../controllers/player');
-var Exercise = require('../../controllers/exercise');
+var Record = require('../../controllers/record');
 
 exports.setUp = function(callback)
 {
@@ -27,7 +27,7 @@ exports.checkRecord = function(test)
         function(answer)
         {
             records2 = answer;
-            return Exercise.checkRecord(PLAYER_ID_TEST1, records1, EXERCISE_ID, 50);
+            return Record.check(PLAYER_ID_TEST1, records1, EXERCISE_ID, 50);
         },console.log
     ).then(
         function(answer)
@@ -35,7 +35,7 @@ exports.checkRecord = function(test)
             test.equal(answer.PR, true);
             test.equal(answer.WR, true);
 
-            return Exercise.checkRecord(PLAYER_ID_TEST2, records2, EXERCISE_ID, 40);
+            return Record.check(PLAYER_ID_TEST2, records2, EXERCISE_ID, 40);
         },console.log
     ).then(
         function(answer)
@@ -49,7 +49,7 @@ exports.checkRecord = function(test)
         function(answer)
         {
             records1 = answer;
-            return Exercise.checkRecord(PLAYER_ID_TEST1, records1, EXERCISE_ID, 40);
+            return Record.check(PLAYER_ID_TEST1, records1, EXERCISE_ID, 40);
         },console.log
     ).then(
         function(answer)

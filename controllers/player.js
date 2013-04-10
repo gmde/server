@@ -15,6 +15,24 @@ exports.incPrize = function(id, prize)
     });
 };
 
+exports.decMoney = function(id, value)
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        Db.players.update(
+            { _id: id },
+            {
+                $inc:
+                {
+                    'private.money': value.money == undefined ? 0 : -value.money,
+                    'private.gold': value.gold == undefined ? 0 : -value.gold
+                }
+            },
+            handler
+        );
+    });
+};
+
 exports.decEnergy = function(id, value)
 {
     return P.call(function(fulfill, reject, handler)

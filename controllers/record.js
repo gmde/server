@@ -76,7 +76,7 @@ var getPR = function(records, exerciseId)
     return pr;
 };
 
-exports.checkRecord = function(playerId, records, exerciseId, weight)
+exports.check = function(playerId, records, exerciseId, weight)
 {
     return P.call(function(fulfill, reject, handler)
     {

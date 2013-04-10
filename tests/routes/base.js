@@ -57,7 +57,6 @@ exports.authFail = function(test)
     Base.auth(session, PLAYER_ID, AUTH_KEY_WRONG).then(
         function(answer)
         {
-            test.throws()
             test.equal(answer, Base.ERR_AUTH_FAIL);
             test.done();
         },

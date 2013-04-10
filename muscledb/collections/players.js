@@ -5,6 +5,21 @@ exports.newPlayer = function(id)
     return {
         _id: id,
         awards: [],
+        records: [],
+        factors: [],
+        jobbing: {
+            lastTime: new Date()
+        },
+        private: {
+            money: 125,
+            gold: 12,
+            energy: exports.ENERGY_MAX,
+            energyMax: exports.ENERGY_MAX
+        },
+        public: {
+            place: 0,
+            level: 120
+        },
         body: [
             {
                 _id: 0,
@@ -102,22 +117,7 @@ exports.newPlayer = function(id)
                 frazzle: 0,
                 power: 0
             }
-        ],
-        factors: [],
-        jobbing: {
-            lastTime: new Date()
-        },
-        private: {
-            money: 125,
-            gold: 12,
-            energy: exports.ENERGY_MAX,
-            energyMax: exports.ENERGY_MAX
-        },
-        public: {
-            place: 0,
-            level: 120
-        },
-        records: []
+        ]
     };
 };
 
@@ -125,29 +125,16 @@ var player0 = exports.newPlayer(0);
 player0.awards.push(0);
 player0.awards.push(1);
 player0.awards.push(2);
-player0.factors.push(1000);
-player0.factors.push(1001);
-player0.factors.push(1002);
-//player0.records.push({
-//    "_id": 0,
-//    "weight": 125,
-//    "date": new Date(),
-//    "isWR": false
-//});
-//player0.records.push({
-//    "_id": 1,
-//    "weight": 225,
-//    "date": new Date(),
-//    "isWR": true
-//});
+player0.factors.push({_id: 1000, date: new Date()});
+player0.factors.push({_id: 1001, date: new Date()});
+player0.factors.push({_id: 1002, date: new Date()});
 
 var player1 = exports.newPlayer(1);
 player1.awards.push(0);
 player1.awards.push(1);
 player1.awards.push(2);
-player1.factors.push(1000);
-player1.factors.push(1001);
-player1.factors.push(1002);
+player1.factors.push({_id: 1001, date: new Date()});
+player1.factors.push({_id: 1002, date: new Date()});
 
 exports.players = [
     player0, player1
