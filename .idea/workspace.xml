@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d83105f-c520-4436-b1b1-f36349c1f21e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/factor.js" />
-      <change type="MOVED" beforePath="C:\wrk\server\controllers\exercise.js" afterPath="$PROJECT_DIR$/controllers/record.js" />
-      <change type="MOVED" beforePath="C:\wrk\server\tests\controllers\exercise.js" afterPath="$PROJECT_DIR$/tests/controllers/record.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/controllers/factor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/player.js" afterPath="$PROJECT_DIR$/controllers/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/factor.js" afterPath="$PROJECT_DIR$/controllers/factor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/muscledb/collections/players.js" afterPath="$PROJECT_DIR$/muscledb/collections/players.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/gym.js" afterPath="$PROJECT_DIR$/routes/gym.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/routes/base.js" afterPath="$PROJECT_DIR$/tests/routes/base.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/controllers/record.js" afterPath="$PROJECT_DIR$/tests/controllers/record.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,62 +35,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="players.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/muscledb/collections/players.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="10" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="e#463#2607#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="7" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="record.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/controllers/record.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="88" column="32" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="factor.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/controllers/factor.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="41" column="1" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="factors.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/muscledb/collections/factors.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="20" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="player.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/controllers/player.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="100" column="20" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.62463343">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="exercises.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/muscledb/collections/exercises.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -107,6 +48,51 @@
             <entry file="file://$PROJECT_DIR$/muscledb/collections/gyms.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="15" column="6" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="player.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/player.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="25" column="17" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="factor.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/controllers/factor.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="67" column="13" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.7360704">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="record.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/record.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="91" column="9" selection-start="2260" selection-end="2260" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="7" column="7" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="players.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/muscledb/collections/players.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="16" column="31" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -143,10 +129,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="record.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="record.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/controllers/record.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="43" column="17" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.9188034">
+                <state line="23" column="23" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -179,6 +165,15 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="factor.js" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tests/controllers/factor.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="46" column="0" selection-start="1169" selection-end="1169" vertical-scroll-proportion="0.982906">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -194,7 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/muscledb/collections/exercises.js" />
         <option value="$PROJECT_DIR$/tests/controllers/player.js" />
         <option value="$PROJECT_DIR$/tests/routes/gym.js" />
         <option value="$PROJECT_DIR$/routes/jobbing.js" />
@@ -203,13 +197,14 @@
         <option value="$PROJECT_DIR$/muscledb/collections/gyms.js" />
         <option value="$PROJECT_DIR$/controllers/player.js" />
         <option value="$PROJECT_DIR$/tests/routes/base.js" />
-        <option value="$PROJECT_DIR$/muscledb/collections/players.js" />
         <option value="$PROJECT_DIR$/controllers/factors.js" />
         <option value="$PROJECT_DIR$/tests/controllers/records.js" />
         <option value="$PROJECT_DIR$/controllers/record.js" />
-        <option value="$PROJECT_DIR$/tests/controllers/record.js" />
         <option value="$PROJECT_DIR$/routes/gym.js" />
+        <option value="$PROJECT_DIR$/tests/controllers/record.js" />
         <option value="$PROJECT_DIR$/controllers/factor.js" />
+        <option value="$PROJECT_DIR$/muscledb/collections/players.js" />
+        <option value="$PROJECT_DIR$/tests/controllers/factor.js" />
       </list>
     </option>
   </component>
@@ -381,20 +376,21 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/routes/jobbing.js" />
-    <property name="options.searchVisible" value="true" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wrk\server\tests\controllers" />
       <recent name="C:\github\server\controllers" />
       <recent name="C:\github\server\tests\controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="Nodeunit.gym.js">
+  <component name="RunManager" selected="Nodeunit.controllers">
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="C:/Program Files/nodejs/node" />
       <envs />
@@ -584,8 +580,8 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39553073" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24741201" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849163" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24741201" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815734" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849163" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -653,20 +649,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/routes/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="20" selection-start="2518" selection-end="2518" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/jobbing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="1" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="7" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
@@ -693,22 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/muscledb/collections/factors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="20" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/muscledb/collections/players.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="10" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#463#2607#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/routes/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="59" column="0" selection-start="1355" selection-end="1355" vertical-scroll-proportion="0.0">
@@ -723,25 +689,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/record.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="32" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/factor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="1" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/nodeunit/lib/types.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="38" selection-start="2155" selection-end="2155" vertical-scroll-proportion="0.3328446">
-          <folding />
-        </state>
+        <state line="82" column="38" selection-start="2155" selection-end="2155" vertical-scroll-proportion="0.3328446" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/gym.js">
@@ -753,14 +703,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/controllers/record.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="17" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.9188034">
+        <state line="23" column="23" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/record.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="9" selection-start="2260" selection-end="2260" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="20" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.62463343">
+        <state line="25" column="17" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/jobbing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="1" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/muscledb/collections/factors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="6" selection-start="249" selection-end="249" vertical-scroll-proportion="0.25641027">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/muscledb/collections/players.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="31" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/controllers/factor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="0" selection-start="1169" selection-end="1169" vertical-scroll-proportion="0.982906">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/factor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="13" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.7360704">
           <folding />
         </state>
       </provider>

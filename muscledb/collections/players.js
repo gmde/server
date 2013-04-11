@@ -1,4 +1,6 @@
 exports.ENERGY_MAX = 100;
+exports.MONEY = 125;
+exports.GOLD = 12;
 
 exports.newPlayer = function(id)
 {
@@ -11,8 +13,8 @@ exports.newPlayer = function(id)
             lastTime: new Date()
         },
         private: {
-            money: 125,
-            gold: 12,
+            money: exports.MONEY,
+            gold: exports.GOLD,
             energy: exports.ENERGY_MAX,
             energyMax: exports.ENERGY_MAX
         },

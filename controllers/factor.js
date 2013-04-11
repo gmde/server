@@ -41,11 +41,20 @@ function removeFactor(playerId, factorId)
     });
 }
 
+exports.get = function(factorId)
+{
+    for(var i = 0; i < Db.dics.factors.length; i++)
+    {
+        if (Db.dics.factors[i]._id == factorId) return Db.dics.factors[i];
+    }
+    return null;
+};
+
 exports.buy = function (playerId, privateInfo, factorId)
 {
     return P.call(function (fulfill, reject, handler)
     {
-        var factor = Db.dics.factors[factorId];
+        var factor = exports.get(factorId);
 
         if (privateInfo.money < factor.cost.money
             || factor.cost.gold != undefined && (privateInfo.gold < factor.cost.gold))

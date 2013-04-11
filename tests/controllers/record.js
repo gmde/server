@@ -12,7 +12,7 @@ var PLAYER_ID_TEST1 = 0;
 var PLAYER_ID_TEST2 = 1;
 var EXERCISE_ID = 0;
 
-exports.checkRecord = function(test)
+exports.check = function(test)
 {
     var records1 = null;
     var records2 = null;
