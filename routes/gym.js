@@ -4,7 +4,7 @@ var Record = require('../controllers/record');
 var P = require('../p');
 
 var WEIGHT_MIN = 20;
-var REPEATS_MIN = 1;
+var REPEATS_MIN = 0;
 var REPEATS_MAX = 200;
 
 var COEFF_POWER = 4;
@@ -77,14 +77,15 @@ exports.execute = function(playerId, gymId, exerciseId, weight, repeats)
 
                 var mass = player.public.level * 1.33 + 40;
                 var k1 = 1 - weight / power;
-                var repeatsMax = Math.floor(k1 / 0.03 + k1 * k1 * 35 + 1);
+                var repeatsMax = k1 / 0.03 + k1 * k1 * 35 + 1;
                 var k2 = weight * repeatsMax - weight * repeatsMax * (k1 + 0.25) + weight;
                 var effMax = k2 / (mass * 15);
 
-                var repeatsFact = repeats < repeatsMax ? repeats : repeatsMax;
-                var effFact = (repeatsFact / repeats) * effMax;
+                var repeatsPlan = repeats > 0 ? repeats : repeatsMax;
+                var repeatsFact = repeatsPlan < repeatsMax ? repeatsPlan : repeatsMax;
+                var effFact = (repeatsFact / repeatsPlan) * effMax;
 
-                var energyFact = Math.round((repeatsFact / repeats) * exercise.energy);
+                var energyFact = Math.round((repeatsFact / repeatsPlan) * exercise.energy);
                 if (energyFact > player.private.energy)
                 {
                     fulfill(exports.MES_ENERGY);

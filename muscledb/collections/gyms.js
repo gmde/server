@@ -1,10 +1,10 @@
 exports.gyms = [
     {
-        _id: 0, desc: "Зал 1", img: 'gym0', exercises: [ 0, 1, 2 ], max: 90, delta: 5,
+        _id: 0, desc: "Зал 1", img: 'gym0', exercises: [ 0, 1, 2 ], max: 290, delta: 5,
         req: null
     },
     {
-        _id: 1, desc: "Зал 2", img: 'gym1', exercises: [ 0, 1, 2, 3 ], max: 140, delta: 2.5,
+        _id: 1, desc: "Зал 2", img: 'gym1', exercises: [ 0, 1, 2, 3 ], max: 340, delta: 2.5,
         req: {
             conditions: [
                 { level: 30, friends: 5 },
@@ -15,7 +15,7 @@ exports.gyms = [
         }
     },
     {
-        _id: 2, desc: "Зал 3", img: 'gym2', exercises: [ 0, 1, 2, 3, 4 ], max: 300, delta: 1.25,
+        _id: 2, desc: "Зал 3", img: 'gym2', exercises: [ 0, 1, 2, 3, 4 ], max: 500, delta: 1.25,
         req: {
             conditions: [
                 { level: 50, friends: 15 },

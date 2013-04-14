@@ -1,6 +1,7 @@
 var Db = require('../db');
 var Base = require('./base');
 var Player = require('../controllers/player');
+var Factor = require('../controllers/factor');
 var Dics = require('./dics');
 var Gym = require('./gym');
 var Jobbing = require('./jobbing');
@@ -82,7 +83,20 @@ function handler(req, res)
             break;
 
         case '/factors':
-            Player.find(id, 'factors').then(successHandler, errorHandler);
+            if (method == 'get')
+            {
+                Factor.clear(id).then(
+                    function()
+                    {
+                        Player.find(id, 'factors').then(successHandler, errorHandler);
+                    }, errorHandler
+                );
+            }
+            else if (method == 'buy')
+            {
+                var factorId = param('factorId', 'int');
+                Factor.buy(id, factorId).then(successHandler, errorHandler);
+            }
             break;
 
         case '/jobbing':
@@ -94,10 +108,11 @@ function handler(req, res)
         case '/gym':
             if (method == 'execute')
             {
+                var gymId = param('gymId', 'int');
                 var exerciseId = param('exerciseId', 'int');
                 var weight = param('weight', 'int');
-                var cntPlan = param('cntPlan', 'int');
-                Gym.execute(id, exerciseId, weight, cntPlan).then(successHandler, errorHandler);
+                var repeats = param('repeats', 'int');
+                Gym.execute(id, gymId, exerciseId, weight, repeats).then(successHandler, errorHandler);
             }
             else errorHandler(ERR_METHOD);
             break;

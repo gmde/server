@@ -127,16 +127,11 @@ var player0 = exports.newPlayer(0);
 player0.awards.push(0);
 player0.awards.push(1);
 player0.awards.push(2);
-player0.factors.push({_id: 1000, date: new Date()});
-player0.factors.push({_id: 1001, date: new Date()});
-player0.factors.push({_id: 1002, date: new Date()});
 
 var player1 = exports.newPlayer(1);
 player1.awards.push(0);
 player1.awards.push(1);
 player1.awards.push(2);
-player1.factors.push({_id: 1001, date: new Date()});
-player1.factors.push({_id: 1002, date: new Date()});
 
 exports.players = [
     player0, player1

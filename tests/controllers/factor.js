@@ -23,19 +23,14 @@ exports.get = function(test)
     test.done();
 };
 
-exports.buy = function(test)
+exports.buyFail = function(test)
 {
     var factor = Factor.get(FACTOR_ID);
     Player.decMoney(PLAYER_ID_TEST1, {money: PlayersColl.MONEY - factor.cost.money + 1}).then(
         function()
         {
-            return Player.find(PLAYER_ID_TEST1, 'private');
-        }, console.log
-    ).then(
-        function(privateInfo)
-        {
-            return Factor.buy(PLAYER_ID_TEST1, privateInfo, FACTOR_ID);
-        }, console.log
+            return Factor.buy(PLAYER_ID_TEST1, FACTOR_ID);
+        }
     ).then(
         function(answer)
         {
@@ -43,4 +38,67 @@ exports.buy = function(test)
             test.done();
         }
     )
+};
+
+exports.buySuccess = function(test)
+{
+    var factor = Factor.get(FACTOR_ID);
+    Factor.buy(PLAYER_ID_TEST1, FACTOR_ID).then(
+        function(answer)
+        {
+            test.equal(answer, undefined);
+            return Player.find(PLAYER_ID_TEST1, 'private');
+        }
+    ).then(
+        function(privateInfo)
+        {
+            test.equal(privateInfo.money, PlayersColl.MONEY - factor.cost.money);
+            test.done();
+        }
+    )
+};
+
+exports.clear = function(test)
+{
+    var factor1 = Factor.get(1000);
+    var factor2 = Factor.get(1001);
+
+    var expire = new Date();
+    expire.setHours(expire.getHours() - factor1.duration - 1);
+
+    var notExpire = new Date();
+    notExpire.setHours(notExpire.getHours() - factor1.duration + 1);
+
+    Db.players.update(
+        {_id: PLAYER_ID_TEST1},
+        {
+            $pushAll: {
+                factors: [
+                    {
+                        _id: 1000,
+                        date: expire
+                    },
+                    {
+                        _id: 1001,
+                        date: notExpire
+                    }
+                ]
+            }
+        },
+        function(err)
+        {
+            Factor.clear(PLAYER_ID_TEST1).then(
+                function()
+                {
+                    Player.find(PLAYER_ID_TEST1, 'factors').then(
+                        function(factors)
+                        {
+                            test.equal(factors[0]._id, 1001);
+                            test.done();
+                        }
+                    )
+                }
+            )
+        }
+    );
 };

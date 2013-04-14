@@ -24,16 +24,46 @@ exports.getExercisePower = function (test)
         {
             body = data;
             return Player.find(session.player.id, 'public');
-        },
-        console.log
+        }
     ).then(
         function (publicInfo)
         {
             var totalPower = Gym.getExercisePower(body, publicInfo, exercise);
             test.equal(totalPower, 334);
             test.done();
-        },
-        console.log
+        }
+    );
+};
+
+exports.executeSuccessForce = function (test)
+{
+    Gym.execute(PLAYER_ID_TEST, GYM, EXERCISE, 90, 0).then(
+        function (answer)
+        {
+            test.equal(answer.repeats, 34.38646202282566);
+            test.equal(answer.repeatsMax, 34.38646202282566);
+            test.equal(answer.energy, 5);
+
+            return Gym.execute(PLAYER_ID_TEST, GYM, EXERCISE, 90, 0);
+        }
+    ).then(
+        function(answer)
+        {
+            test.equal(answer.repeats, 31.610426627870666);
+            test.equal(answer.repeatsMax, 31.610426627870666);
+            test.equal(answer.energy, 5);
+
+            return Gym.execute(PLAYER_ID_TEST, GYM, EXERCISE, 90, 0);
+        }
+    ).then(
+        function(answer)
+        {
+            test.equal(answer.repeats, 33.62730073550091);
+            test.equal(answer.repeatsMax, 33.62730073550091);
+            test.equal(answer.energy, 5);
+
+            test.done();
+        }
     );
 };
 
@@ -43,12 +73,12 @@ exports.executeSuccess = function (test)
         function (answer)
         {
             test.equal(answer.repeats, 12);
+            test.equal(answer.repeatsMax, 54.480257116620756);
             test.equal(answer.energy, 5);
 
-            return Player.decEnergy(PLAYER_ID_TEST, -answer.energy);
-        },
-        console.log
-    ).then(test.done, console.log);
+            test.done();
+        }
+    );
 };
 
 exports.executeFailWeight = function (test)
@@ -58,22 +88,19 @@ exports.executeFailWeight = function (test)
         {
             test.equal(answer, Gym.MES_WEIGHT);
             return Gym.execute(PLAYER_ID_TEST, GYM, EXERCISE, 100, 12);
-        },
-        console.log
+        }
     ).then(
         function (answer)
         {
             test.equal(answer, Gym.MES_WEIGHT);
             return Gym.execute(PLAYER_ID_TEST, GYM, EXERCISE, 33.231, 12);
-        },
-        console.log
+        }
     ).then(
         function (answer)
         {
             test.equal(answer, Gym.MES_WEIGHT);
             test.done();
-        },
-        console.log);
+        });
 };
 
 exports.executeFailRepeats = function (test)
@@ -82,16 +109,14 @@ exports.executeFailRepeats = function (test)
         function (answer)
         {
             test.equal(answer, Gym.MES_REPEATS_MAX);
-            return Gym.execute(PLAYER_ID_TEST, GYM, EXERCISE, 50, 0);
-        },
-        console.log
+            return Gym.execute(PLAYER_ID_TEST, GYM, EXERCISE, 50, -1);
+        }
     ).then(
         function (answer)
         {
             test.equal(answer, Gym.MES_REPEATS_MIN);
             test.done();
-        },
-        console.log
+        }
     );
 };
 
@@ -104,8 +129,7 @@ exports.executeFailLessOneRepeat = function(test)
             test.equal(0 < answer.repeats && answer.repeats < 1, true);
             test.equal(answer.energy, Db.dics.exercises[0].energy);
             test.done();
-        },
-        console.log
+        }
     );
 };
 
@@ -122,8 +146,7 @@ exports.executeFailEnergy = function (test)
         {
             test.equal(answer, Gym.MES_ENERGY);
             return Player.update(PLAYER_ID_TEST, {$set:{ 'private.energy':1}});
-        },
-        console.log
+        }
     ).then(
         function ()
         {
@@ -134,13 +157,11 @@ exports.executeFailEnergy = function (test)
         {
             test.equal(answer, Gym.MES_ENERGY);
             return Player.update(PLAYER_ID_TEST, {$set:{ 'private.energy':PlayersCollection.ENERGY_MAX}});
-        },
-        console.log
+        }
     ).then(
         function ()
         {
             test.done();
-        },
-        console.log
+        }
     );
 };

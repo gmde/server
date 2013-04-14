@@ -1,20 +1,21 @@
 var Db = require('../db');
 var P = require('../p');
 var Player = require('../controllers/player');
+var Vow = require('vow');
 
 exports.MES_COST = "Не хватает средств";
 
 function addFactor(playerId, factorId)
 {
-    return P.call(function (fulfill, reject, handler)
+    return P.call(function(fulfill, reject, handler)
     {
         Db.players.update(
-            {_id:playerId},
+            {_id: playerId},
             {
-                $push:{
-                    factors:{
-                        _id:factorId,
-                        date:new Date()
+                $push: {
+                    factors: {
+                        _id: factorId,
+                        date: new Date()
                     }
                 }
             },
@@ -25,14 +26,14 @@ function addFactor(playerId, factorId)
 
 function removeFactor(playerId, factorId)
 {
-    return P.call(function (fulfill, reject, handler)
+    return P.call(function(fulfill, reject, handler)
     {
-        Db.players.remove(
-            {_id:playerId},
+        Db.players.update(
+            {_id: playerId},
             {
-                $pull:{
-                    factors:{
-                        _id:factorId
+                $pull: {
+                    factors: {
+                        _id: factorId
                     }
                 }
             },
@@ -43,31 +44,71 @@ function removeFactor(playerId, factorId)
 
 exports.get = function(factorId)
 {
-    for(var i = 0; i < Db.dics.factors.length; i++)
+    for (var i = 0; i < Db.dics.factors.length; i++)
     {
         if (Db.dics.factors[i]._id == factorId) return Db.dics.factors[i];
     }
     return null;
 };
 
-exports.buy = function (playerId, privateInfo, factorId)
+exports.buy = function(playerId, factorId)
 {
-    return P.call(function (fulfill, reject, handler)
+    return P.call(function(fulfill, reject, handler)
     {
-        var factor = exports.get(factorId);
-
-        if (privateInfo.money < factor.cost.money
-            || factor.cost.gold != undefined && (privateInfo.gold < factor.cost.gold))
-        {
-            fulfill(exports.MES_COST);
-            return;
-        }
-
-        addFactor(playerId, factorId).then(
-            function ()
+        return Player.find(playerId, 'private').then(
+            function(privateInfo)
             {
-                Player.decMoney(playerId, factor.cost).then(fulfill, reject);
+                var factor = exports.get(factorId);
+
+                if (privateInfo.money < factor.cost.money
+                    || factor.cost.gold != undefined && (privateInfo.gold < factor.cost.gold))
+                {
+                    fulfill(exports.MES_COST);
+                    return;
+                }
+
+                addFactor(playerId, factorId).then(
+                    function()
+                    {
+                        Player.decMoney(playerId, factor.cost).then(fulfill, reject);
+                    }, reject
+                );
             }, reject
         );
+    });
+};
+
+exports.clear = function(playerId)
+{
+    return P.call(function(fulfill, reject, handler)
+    {
+        Player.find(playerId, 'factors').then(
+            function(factors)
+            {
+                var promises = [];
+                for (var i = 0; i < factors.length; i++)
+                {
+                    var factorOfPlayer = factors[i];
+                    var factor = exports.get(factorOfPlayer._id);
+
+                    var now = new Date();
+                    factorOfPlayer.date.setHours(factorOfPlayer.date.getHours() + factor.duration);
+
+                    if (factorOfPlayer.date < now)
+                    {
+                        promises.push(removeFactor(playerId, factor._id));
+                    }
+                }
+
+                if (promises.length > 0)
+                {
+                    Vow.all(promises).then(fulfill, reject);
+                }
+                else
+                {
+                    fulfill();
+                }
+            }, reject
+        )
     });
 };
