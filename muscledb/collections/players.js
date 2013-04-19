@@ -25,97 +25,97 @@ exports.newPlayer = function(id)
         body: [
             {
                 _id: 0,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 1,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 2,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 3,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 4,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 5,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 6,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 7,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 8,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 9,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 10,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 11,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 12,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 13,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 14,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             },
             {
                 _id: 15,
-                effect: 0,
+                stress: 0,
                 frazzle: 0,
                 power: 0
             }

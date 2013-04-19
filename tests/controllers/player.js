@@ -172,13 +172,13 @@ exports.setFrazzle = function(test)
         function(body)
         {
             test.equal(body[2].frazzle, 0.25);
-            test.equal(body[2].effect, 0.25);
+            test.equal(body[2].stress, 0.25);
             test.equal(body[4].frazzle, 0.4);
-            test.equal(body[4].effect, 0.4);
+            test.equal(body[4].stress, 0.4);
             test.equal(body[5].frazzle, 0.15);
-            test.equal(body[5].effect, 0.15);
+            test.equal(body[5].stress, 0.15);
             test.equal(body[6].frazzle, 0.5);
-            test.equal(body[6].effect, 0.5);
+            test.equal(body[6].stress, 0.5);
 
             return Player.setFrazzle(PLAYER_ID_TEST, body, exercise, 1);
         },console.log
@@ -191,13 +191,13 @@ exports.setFrazzle = function(test)
         function(body)
         {
             test.equal(body[2].frazzle, 0.75);
-            test.equal(body[2].effect, 0.75);
+            test.equal(body[2].stress, 0.75);
             test.equal(body[4].frazzle, 1);
-            test.equal(body[4].effect, 1);
+            test.equal(body[4].stress, 1);
             test.equal(body[5].frazzle, 0.45);
-            test.equal(body[5].effect, 0.45);
+            test.equal(body[5].stress, 0.45);
             test.equal(body[6].frazzle, 1);
-            test.equal(body[6].effect, 1);
+            test.equal(body[6].stress, 1);
 
             test.done();
         }

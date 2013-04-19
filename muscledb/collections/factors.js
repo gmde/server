@@ -5,10 +5,8 @@ exports.factors = [
         name: 'food1',
         desc: 'desc',
         img: 'img',
-        protein: 20,
-        carbs: 30,
-        weight: 100,
         duration: 3,
+        food: { protein: 20, carbs: 30,weight: 100 },
         cost: { money: 10 }
     },
     {
@@ -17,10 +15,8 @@ exports.factors = [
         name: 'food2',
         desc: 'desc',
         img: 'img',
-        protein: 10,
-        carbs: 20,
-        weight: 200,
         duration: 5,
+        food: { protein: 10, carbs: 20,weight: 200 },
         cost: { money: 20 }
     },
     {
@@ -30,7 +26,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 5,
-        regeneration: { energy: 0.5, frazzle: 0.5, muscle: 0.5 },
+        reg: { energy: 0.5, frazzle: 0.5 },
         cost: { money: 20 }
     },
     {
@@ -40,7 +36,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 5,
-        regeneration: { energy: 0.6, frazzle: 0.6, muscle: 0.6 },
+        reg: { energy: 0.6, frazzle: 0.6 },
         cost: { money: 20, gold: 1 }
     },
     {
@@ -50,7 +46,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 8,
-        regeneration: { energy: 1.6, frazzle: 1.6, muscle: 1.6 },
+        reg: { energy: 1.6, frazzle: 1.6 },
         cost: { money: 20, gold: 2 }
     },
     {
@@ -60,7 +56,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 8,
-        regeneration: { energy: 1.7, frazzle: 1.8, muscle: 1.9 },
+        reg: { energy: 1.7, frazzle: 1.8 },
         cost: { money: 20, gold: 5 }
     }
 ];

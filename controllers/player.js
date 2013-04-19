@@ -110,11 +110,11 @@ exports.setFrazzle = function(playerId, body, exercise, frazzle)
             var f = muscleBody.frazzle + muscleExercise.stress * frazzle;
             if (f > 1) f = 1;
             f = Math.round(f * 100)/100;
-            var e = muscleBody.effect + muscleExercise.stress * frazzle;
+            var e = muscleBody.stress + muscleExercise.stress * frazzle;
             if (e > 1) e = 1;
             e = Math.round(e * 100)/100;
             setClause['body.' + muscleExercise._id + '.frazzle'] = f;
-            setClause['body.' + muscleExercise._id + '.effect'] = e;
+            setClause['body.' + muscleExercise._id + '.stress'] = e;
         }
 
         Db.players.update(
