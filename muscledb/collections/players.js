@@ -22,6 +22,7 @@ exports.newPlayer = function(id)
             place: 0,
             level: 120
         },
+        updateTime: new Date(),
         body: [
             {
                 _id: 0,
