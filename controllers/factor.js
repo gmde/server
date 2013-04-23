@@ -2,6 +2,7 @@ var Db = require('../db');
 var P = require('../p');
 var Player = require('../controllers/player');
 var Vow = require('vow');
+var DateHelper = require('./date');
 
 exports.MES_COST = "Не хватает средств";
 
@@ -15,7 +16,7 @@ function addFactor(playerId, factorId)
                 $push: {
                     factors: {
                         _id: factorId,
-                        date: new Date()
+                        expire: DateHelper.expire(new Date(), exports.get(factorId).duration)
                     }
                 }
             },
@@ -88,13 +89,9 @@ exports.clear = function(playerId)
                 var promises = [];
                 for (var i = 0; i < factors.length; i++)
                 {
-                    var factorOfPlayer = factors[i];
-                    var factor = exports.get(factorOfPlayer._id);
+                    var factor = factors[i];
 
-                    var now = new Date();
-                    factorOfPlayer.date.setHours(factorOfPlayer.date.getHours() + factor.duration);
-
-                    if (factorOfPlayer.date < now)
+                    if (factor.expire < new Date())
                     {
                         promises.push(removeFactor(playerId, factor._id));
                     }

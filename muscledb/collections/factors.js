@@ -26,7 +26,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 5,
-        reg: { energy: 0.5, frazzle: 0.5 },
+        reg: { energy: 0.1, frazzle: 0.1 },
         cost: { money: 20 }
     },
     {
@@ -36,7 +36,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 5,
-        reg: { energy: 0.6, frazzle: 0.6 },
+        reg: { energy: 0.2, frazzle: 0.2 },
         cost: { money: 20, gold: 1 }
     },
     {
@@ -46,7 +46,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 8,
-        reg: { energy: 1.6, frazzle: 1.6 },
+        reg: { energy: 0.3, frazzle: 0.3 },
         cost: { money: 20, gold: 2 }
     },
     {
@@ -56,7 +56,7 @@ exports.factors = [
         desc: 'desc',
         img: 'img',
         duration: 8,
-        reg: { energy: 1.7, frazzle: 1.8 },
+        reg: { energy: 0.4, frazzle: 0.4 },
         cost: { money: 20, gold: 5 }
     }
 ];

@@ -1,5 +1,6 @@
 var Db = require('../../db');
 var Jobbing = require('../../routes/jobbing');
+var DateHelper = require('../../controllers/date');
 
 var PLAYER_ID_TEST = 0;
 var session = { player: { id: PLAYER_ID_TEST } };
@@ -11,10 +12,9 @@ exports.setUp = function(callback)
 
 exports.getSuccess = function(test)
 {
-    var now16 = new Date();
-    now16.setMinutes(now16.getMinutes() - 16);
+    var past = DateHelper.expire(new Date(), -Jobbing.JOBBING_PERIOD - 1);
 
-    Jobbing.setLastTime(PLAYER_ID_TEST, now16).then(
+    Jobbing.setExpire(PLAYER_ID_TEST, past).then(
         function()
         {
             return Jobbing.get(session);
@@ -33,9 +33,9 @@ exports.getSuccess = function(test)
 
 exports.getFail = function(test)
 {
-    var now = new Date();
+    var now = DateHelper.addMinutes(new Date(), 1);
 
-    Jobbing.setLastTime(PLAYER_ID_TEST, now).then(
+    Jobbing.setExpire(PLAYER_ID_TEST, now).then(
         function()
         {
             return Jobbing.get(session);
@@ -53,10 +53,9 @@ exports.getFail = function(test)
 
 exports.completeSuccess = function(test)
 {
-    var now16 = new Date();
-    now16.setMinutes(now16.getMinutes() - 16);
+    var past = DateHelper.expire(new Date(), -Jobbing.JOBBING_PERIOD - 1);
 
-    Jobbing.setLastTime(PLAYER_ID_TEST, now16).then(
+    Jobbing.setExpire(PLAYER_ID_TEST, past).then(
         function()
         {
             return Jobbing.get(session);
@@ -82,9 +81,9 @@ exports.completeSuccess = function(test)
 
 exports.completeNotStarted = function(test)
 {
-    var now = new Date();
+    var now = DateHelper.addMinutes(new Date(), 1);
 
-    Jobbing.setLastTime(PLAYER_ID_TEST, now).then(
+    Jobbing.setExpire(PLAYER_ID_TEST, now).then(
         function()
         {
             return Jobbing.get(session);
@@ -109,10 +108,9 @@ exports.completeNotStarted = function(test)
 
 exports.completeTimeIsUp = function(test)
 {
-    var now16 = new Date();
-    now16.setMinutes(now16.getMinutes() - 16);
+    var past = DateHelper.expire(new Date(), -Jobbing.JOBBING_PERIOD - 1);
 
-    Jobbing.setLastTime(PLAYER_ID_TEST, now16).then(
+    Jobbing.setExpire(PLAYER_ID_TEST, past).then(
         function()
         {
             return Jobbing.get(session);
@@ -123,9 +121,8 @@ exports.completeTimeIsUp = function(test)
         {
             test.equal(session.player.jobbing.started, true);
 
-            var lastTime = new Date(session.player.jobbing.lastTime);
-            lastTime.setSeconds(lastTime.getSeconds() - 64);
-            session.player.jobbing.lastTime = lastTime.toString();
+            session.player.jobbing.lastTime =
+                DateHelper.addSeconds(session.player.jobbing.lastTime, -Jobbing.JOBBING_TIMER - 10);
 
             return Jobbing.complete(session);
         },

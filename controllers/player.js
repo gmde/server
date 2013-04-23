@@ -1,6 +1,14 @@
 var Db = require('../db');
 var P = require('../p');
+var DateHelper = require('./date');
 var Factor = require('./factor');
+var Players = require('../muscledb/collections/players');
+
+exports.REG_FRAZZLE = 0.2;
+exports.REG_ENERGY = 0.3;
+
+exports.REG_ENERGY_PER_HOUR = exports.REG_ENERGY * Players.ENERGY_MAX;
+exports.REG_FRAZZLE_PER_HOUR = exports.REG_FRAZZLE;
 
 var TIME_STEP = 5;
 
@@ -57,11 +65,11 @@ exports.remove = function (id)
     });
 };
 
-exports.update = function (id, values)
+exports.update = function (id, setClause)
 {
     return P.call(function (fulfill, reject, handler)
     {
-        Db.players.update({ _id:id}, values, handler);
+        Db.players.update({ _id:id}, setClause, handler);
     });
 };
 
@@ -129,24 +137,75 @@ exports.setFrazzle = function (playerId, body, exercise, frazzle)
     });
 };
 
+function getSetClause(player)
+{
+    var now = new Date();
+
+    var minFixTime = DateHelper.addMinutesClone(player.fixTime, TIME_STEP);
+
+    if (minFixTime < now)
+    {
+        return null;
+    }
+
+    var frazzleIncrease = 0;
+    var energyIncrease = 0;
+
+    for (var i = 0; i < player.factors.length; i++)
+    {
+        var factor = player.factors[i];
+        var factorInfo = Factor.get(factor._id);
+
+        if (factorInfo.reg == undefined) continue;
+
+        var end = factor.expire > now ? now : factor.expire;
+        var interval = (end - player.fixTime) / 1000 / 60 / 60;
+
+        frazzleIncrease += interval * factorInfo.reg.frazzle;
+        energyIncrease += interval * factorInfo.reg.energy * Players.ENERGY_MAX;
+    }
+
+    interval = (now - player.fixTime) / 1000 / 60 / 60;
+    frazzleIncrease += exports.REG_FRAZZLE_PER_HOUR * interval;
+    energyIncrease += exports.REG_ENERGY_PER_HOUR * interval;
+
+    energyIncrease += player.private.energy;
+    if (energyIncrease > Players.ENERGY_MAX)energyIncrease = Players.ENERGY_MAX;
+
+    var setClause = { 'private.energy':energyIncrease, fixTime:now };
+
+    for (i = 0; i < player.body.length; i++)
+    {
+        var muscle = player.body[i];
+        muscle.frazzle -= frazzleIncrease;
+        if (muscle.frazzle < 0)muscle.frazzle = 0;
+
+        setClause['body.' + i + '.frazzle'] = muscle.frazzle;
+    }
+
+    return setClause;
+}
+
 exports.fix = function (id)
 {
     return P.call(function (fulfill, reject, handler)
     {
-        exports.find(id, 'updateTime').then(
-            function (updateTime)
+        exports.find(id, ['fixTime', 'factors', 'private', 'body']).then(
+            function (player)
             {
-                var now = new Date();
-                updateTime.date.setMinutes(updateTime.date.getMinutes() + TIME_STEP);
+                var setClause = getSetClause(player);
+                if (setClause == null)
+                {
+                    fulfill();
+                    return;
+                }
 
-                if (updateTime < now) fulfill();
-
-                Factor.clear(id).then(
-
-                )
-
-                exports.update(id, { $set:{ updateTime:now }}).then(fulfill, reject);
-
+                exports.update(id, {$set:setClause}).then(
+                    function()
+                    {
+                        Factor.clear(id).then(fulfill, reject);
+                    }, reject
+                );
             }, reject
         );
     });

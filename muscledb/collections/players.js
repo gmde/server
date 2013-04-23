@@ -10,7 +10,7 @@ exports.newPlayer = function(id)
         records: [],
         factors: [],
         jobbing: {
-            lastTime: new Date()
+            expire: new Date()
         },
         private: {
             money: exports.MONEY,
@@ -22,7 +22,7 @@ exports.newPlayer = function(id)
             place: 0,
             level: 120
         },
-        updateTime: new Date(),
+        fixTime: new Date(),
         body: [
             {
                 _id: 0,
