@@ -43,3 +43,8 @@ exports.expire = function(date, hours)
     newDate.setHours(newDate.getHours() + hours);
     return newDate;
 };
+
+exports.intervalHours = function(timestamp)
+{
+    return timestamp / 1000 / 60 / 60;
+}

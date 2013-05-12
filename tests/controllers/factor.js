@@ -3,6 +3,7 @@ var Muscledb = require('../../muscledb/muscledb');
 var Player = require('../../controllers/player');
 var PlayersColl = require('../../muscledb/collections/players');
 var Factor = require('../../controllers/factor');
+var DateHelper = require('../../controllers/date');
 
 exports.setUp = function(callback)
 {
@@ -53,6 +54,12 @@ exports.buySuccess = function(test)
         function(privateInfo)
         {
             test.equal(privateInfo.money, PlayersColl.MONEY - factor.cost.money);
+            return Player.find(PLAYER_ID_TEST1, 'factors');
+        }
+    ).then(
+        function(factors)
+        {
+            test.equal(factors[0]._id, FACTOR_ID)
             test.done();
         }
     )
@@ -60,14 +67,11 @@ exports.buySuccess = function(test)
 
 exports.clear = function(test)
 {
-    var factor1 = Factor.get(1000);
-    var factor2 = Factor.get(1001);
+    var factor1 = Factor.get(2000);
+    var factor2 = Factor.get(2001);
 
-    var expire = new Date();
-    expire.setHours(expire.getHours() - factor1.duration - 1);
-
-    var notExpire = new Date();
-    notExpire.setHours(notExpire.getHours() - factor1.duration + 1);
+    var expiredDate = DateHelper.addHours(new Date(), -1);
+    var notExpiredDate = DateHelper.addHours(new Date(), 1);
 
     Db.players.update(
         {_id: PLAYER_ID_TEST1},
@@ -75,12 +79,12 @@ exports.clear = function(test)
             $pushAll: {
                 factors: [
                     {
-                        _id: 1000,
-                        date: expire
+                        _id: factor1._id,
+                        expire: expiredDate
                     },
                     {
-                        _id: 1001,
-                        date: notExpire
+                        _id: factor2._id,
+                        expire: notExpiredDate
                     }
                 ]
             }
@@ -93,7 +97,7 @@ exports.clear = function(test)
                     Player.find(PLAYER_ID_TEST1, 'factors').then(
                         function(factors)
                         {
-                            test.equal(factors[0]._id, 1001);
+                            test.equal(factors[0]._id, factor2._id);
                             test.done();
                         }
                     )

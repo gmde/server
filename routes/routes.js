@@ -16,6 +16,7 @@ function handler(req, res)
 {
     var successHandler = function(answer)
     {
+        if (answer == undefined)answer = true;
         res.jsonp(answer);
     };
 
@@ -67,35 +68,54 @@ function handler(req, res)
             break;
 
         case '/private':
-            Player.find(id, 'private').then(successHandler, errorHandler);
+            Player.updateState(id).then(
+                function()
+                {
+                    Player.find(id, 'private').then(successHandler, errorHandler);
+                }, errorHandler);
             break;
 
         case '/public':
-            Player.find(id, 'public').then(successHandler, errorHandler);
+            Player.updateState(id).then(
+                function()
+                {
+                    Player.find(id, 'public').then(successHandler, errorHandler);
+                }, errorHandler);
             break;
 
         case '/awards':
-            Player.find(id, 'awards').then(successHandler, errorHandler);
+            Player.updateState(id).then(
+                function()
+                {
+                    Player.find(id, 'awards').then(successHandler, errorHandler);
+                }, errorHandler);
             break;
 
         case '/body':
-            Player.find(id, 'body').then(successHandler, errorHandler);
+            Player.updateState(id).then(
+                function()
+                {
+                    Player.find(id, 'body').then(successHandler, errorHandler)
+                }, errorHandler);
             break;
 
         case '/factors':
             if (method == 'get')
             {
-                Factor.clear(id).then(
+                Player.updateState(id).then(
                     function()
                     {
                         Player.find(id, 'factors').then(successHandler, errorHandler);
-                    }, errorHandler
-                );
+                    }, errorHandler);
             }
             else if (method == 'buy')
             {
-                var factorId = param('factorId', 'int');
-                Factor.buy(id, factorId).then(successHandler, errorHandler);
+                Player.updateState(id).then(
+                    function()
+                    {
+                        var factorId = param('factorId', 'int');
+                        Factor.buy(id, factorId).then(successHandler, errorHandler);
+                    }, errorHandler);
             }
             break;
 

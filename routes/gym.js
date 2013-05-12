@@ -17,6 +17,11 @@ exports.MES_REPEATS_MIN = { message: "Сделай хотя бы одно пов
 exports.MES_ENERGY = { message: "Не хватает энергии, отдохни и подкрепись"};
 exports.MES_EXERCISE = { message: "Упражнение недоступно"};
 
+function round2(v)
+{
+    return Math.round(v * 100) / 100;
+}
+
 exports.getExercisePower = function(playerBody, publicInfo, exercise)
 {
     //TODO: stimulants
@@ -77,15 +82,15 @@ exports.execute = function(playerId, gymId, exerciseId, weight, repeats)
 
                 var mass = player.public.level * 1.33 + 40;
                 var k1 = 1 - weight / power;
-                var repeatsMax = k1 / 0.03 + k1 * k1 * 35 + 1;
+                var repeatsMax = round2(k1 / 0.03 + k1 * k1 * 35 + 1);
                 var k2 = weight * repeatsMax - weight * repeatsMax * (k1 + 0.25) + weight;
                 var effMax = k2 / (mass * 15);
 
                 var repeatsPlan = repeats > 0 ? repeats : repeatsMax;
-                var repeatsFact = repeatsPlan < repeatsMax ? repeatsPlan : repeatsMax;
+                var repeatsFact = round2(repeatsPlan < repeatsMax ? repeatsPlan : repeatsMax);
                 var effFact = (repeatsFact / repeatsPlan) * effMax;
 
-                var energyFact = Math.round((repeatsFact / repeatsPlan) * exercise.energy);
+                var energyFact = Math.ceil((repeatsFact / repeatsMax) * exercise.energy);
                 if (energyFact > player.private.energy)
                 {
                     fulfill(exports.MES_ENERGY);

@@ -16,13 +16,19 @@ exports.newPlayer = function(id)
             money: exports.MONEY,
             gold: exports.GOLD,
             energy: exports.ENERGY_MAX,
-            energyMax: exports.ENERGY_MAX
+            energyMax: exports.ENERGY_MAX,
+            reg: {
+                lastUpdateTime: new Date(),
+                lastFixTime: new Date(),
+                food: 0,
+                rest: 0,
+                stimulant: 0
+            }
         },
         public: {
             place: 0,
             level: 120
         },
-        fixTime: new Date(),
         body: [
             {
                 _id: 0,
@@ -134,6 +140,26 @@ player1.awards.push(0);
 player1.awards.push(1);
 player1.awards.push(2);
 
+var player2 = exports.newPlayer(2);
+player2.awards.push(0);
+player2.awards.push(1);
+player2.awards.push(2);
+
+var player3 = exports.newPlayer(3);
+player3.awards.push(0);
+player3.awards.push(1);
+player3.awards.push(2);
+
+var player4 = exports.newPlayer(4);
+player3.awards.push(0);
+player3.awards.push(1);
+player3.awards.push(2);
+
+var player5 = exports.newPlayer(5);
+player3.awards.push(0);
+player3.awards.push(1);
+player3.awards.push(2);
+
 exports.players = [
-    player0, player1
+    player0, player1, player2, player3, player4, player5
 ];
