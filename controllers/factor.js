@@ -8,15 +8,15 @@ exports.MES_COST = "Не хватает средств";
 
 function addFactor(playerId, factorId)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         Db.players.update(
-            {_id: playerId},
+            {_id:playerId},
             {
-                $push: {
-                    factors: {
-                        _id: factorId,
-                        expire: DateHelper.expire(new Date(), exports.get(factorId).duration)
+                $push:{
+                    factors:{
+                        _id:factorId,
+                        expire:DateHelper.expire(new Date(), exports.get(factorId).duration)
                     }
                 }
             },
@@ -27,13 +27,13 @@ function addFactor(playerId, factorId)
 
 function removeFactor(playerId, factorId)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         Db.players.update(
             {_id: playerId},
             {
-                $pull: {
-                    factors: {
+                $pull:{
+                    factors:{
                         _id: factorId
                     }
                 }
@@ -43,7 +43,7 @@ function removeFactor(playerId, factorId)
     });
 }
 
-exports.get = function(factorId)
+exports.get = function (factorId)
 {
     for (var i = 0; i < Db.dics.factors.length; i++)
     {
@@ -52,24 +52,24 @@ exports.get = function(factorId)
     return null;
 };
 
-exports.buy = function(playerId, factorId)
+exports.buy = function (playerId, factorId)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject, handler)
     {
         return Player.find(playerId, 'private').then(
-            function(privateInfo)
+            function (privateInfo)
             {
                 var factor = exports.get(factorId);
 
-                if (privateInfo.money < factor.cost.money
-                    || factor.cost.gold != undefined && (privateInfo.gold < factor.cost.gold))
+                if (privateInfo.money < factor.cost.money ||
+                    privateInfo.gold < factor.cost.gold)
                 {
                     fulfill(exports.MES_COST);
                     return;
                 }
 
                 addFactor(playerId, factorId).then(
-                    function()
+                    function ()
                     {
                         Player.decMoney(playerId, factor.cost).then(fulfill, reject);
                     }, reject
@@ -79,12 +79,12 @@ exports.buy = function(playerId, factorId)
     });
 };
 
-exports.clear = function(playerId)
+exports.clear = function (playerId)
 {
-    return P.call(function(fulfill, reject, handler)
+    return P.call(function (fulfill, reject)
     {
         Player.find(playerId, 'factors').then(
-            function(factors)
+            function (factors)
             {
                 var promises = [];
                 for (var i = 0; i < factors.length; i++)

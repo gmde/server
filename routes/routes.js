@@ -16,7 +16,7 @@ function handler(req, res)
 {
     var successHandler = function(answer)
     {
-        if (answer == undefined)answer = true;
+        if (answer == undefined)answer = {};
         res.jsonp(answer);
     };
 
@@ -37,7 +37,7 @@ function handler(req, res)
 
     if (req.url == '/favicon.ico')
     {
-        successHandler({});
+        successHandler();
         return;
     }
 
