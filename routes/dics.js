@@ -1,4 +1,4 @@
-var NAMES = ['awards', 'factors', 'muscles', 'muscles_view', 'exercises', 'gyms', 'bank', 'work'];
+var NAMES = ['awards', 'factors', 'muscles', 'muscles_view', 'exercises', 'gyms', 'bank', 'work', 'records'];
 var dics = {};
 
 var Db = require('../db');

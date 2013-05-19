@@ -13,6 +13,7 @@ function withdrawVotes(votes)
     {
         fulfill(true);
 
+        //TODO: call api to withdraw votes
         //TODO: create transaction
     });
 }
@@ -48,22 +49,26 @@ exports.exchange = function (playerId, operationId)
 
                 }, reject
             ).then(
-                function(result)
+                function (result)
                 {
-                    if (result == true)
-                    {
-                        return Player.update(playerId,
-                            {
-                                $set:{
-                                    'private.energy': Players.ENERGY_MAX
-                                },
-                                $inc:{
-                                    'private.money': change
-                                }
-                            })
-                    }
+                    if (result != true) reject();
+
+                    Player.update(playerId,
+                        {
+                            $set:{
+                                'private.energy':Players.ENERGY_MAX
+                            },
+                            $inc:{
+                                'private.money':change
+                            }
+                        }).then(fulfill, reject);
+
                 }, reject
             );
+        }
+        else // money or gold
+        {
+
         }
     });
 };

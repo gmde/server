@@ -42,7 +42,7 @@ function setNewWR(playerId, exerciseId, weight)
 {
     return P.call(function(fulfill, reject, handler)
     {
-        Db.exercises.update(
+        Db.records.update(
             {_id: exerciseId},
             {
                 $set: {
@@ -60,7 +60,7 @@ function setNewWR(playerId, exerciseId, weight)
                     reject(err);
                     return;
                 }
-                Dics.update('exercises').then(fulfill, reject);
+                Dics.update('records').then(fulfill, reject);
             }
         );
     });
@@ -95,10 +95,10 @@ exports.check = function(playerId, records, exerciseId, weight)
         setNewPR(playerId, pr, exerciseId, weight).then(
             function()
             {
-                var exercise = Db.dics.exercises[exerciseId];
-                if (exercise.record != null)
+                var record = Db.dics.records[exerciseId];
+                if (record.record != null)
                 {
-                    if (exercise.record.weight > weight)
+                    if (record.record.weight > weight)
                     {
                         fulfill(result);
                         return;

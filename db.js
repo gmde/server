@@ -85,12 +85,12 @@ exports.init = function(options)
             function(players)
             {
                 exports.players = players;
-                return exports.collection('exercises');
+                return exports.collection('records');
             }, reject
         ).then(
-            function(exercises)
+            function(records)
             {
-                exports.exercises = exercises;
+                exports.records = records;
                 return require('./routes/dics').get();
             }, reject
         ).then(
