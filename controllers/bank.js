@@ -35,7 +35,7 @@ exports.exchange = function (playerId, operationId)
 
         var change;
 
-        if (operationId == 4) // energy
+        if (operation.curr == "energy")
         {
             Player.find(playerId, 'private').then(
                 function (privateInfo)
@@ -56,10 +56,10 @@ exports.exchange = function (playerId, operationId)
                     Player.update(playerId,
                         {
                             $set:{
-                                'private.energy':Players.ENERGY_MAX
+                                'private.energy': Players.ENERGY_MAX
                             },
                             $inc:{
-                                'private.money':change
+                                'private.money': change
                             }
                         }).then(fulfill, reject);
 
